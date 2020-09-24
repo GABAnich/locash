@@ -68,7 +68,7 @@ describe("services", () => {
         });
         it("should parse number with sign and space", () => {
             expect(parse("- 6 food")).to.deep.equal({
-                value: 6,
+                value: -6,
                 description: "food"
             });
         });
