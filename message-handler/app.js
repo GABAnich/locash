@@ -1,6 +1,6 @@
 const axios = require("axios");
 const parse = require("./services/parse");
-const { TELEGRAM_TOKEN }= require("./credentials.json");
+const { TELEGRAM_TOKEN } = require("./credentials.json");
 
 const sendToUser = async (chat_id, text) =>
     axios.get(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
@@ -10,9 +10,9 @@ const sendToUser = async (chat_id, text) =>
 exports.lambdaHandler = async (event, context) => {
     try {
         console.log(event);
-    
+
         if (event.queryStringParameters.token !== TELEGRAM_TOKEN) {
-            return { statusCode: 403 }
+            return { statusCode: 403 };
         }
 
         const body = JSON.parse(event.body);
