@@ -32,7 +32,7 @@ exports.lambdaHandler = async (event, context) => {
         const body = JSON.parse(event.body);
         const { chat, text } = body.message;
 
-        if (text === "/start") {
+        if (text === "/start" || text === "/help") {
             await sendToUser(chat.id, welcomeText);
             return { statusCode: 200 };
         }
