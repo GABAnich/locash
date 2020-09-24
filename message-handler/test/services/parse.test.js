@@ -66,12 +66,30 @@ describe("services", () => {
                 description: "salary"
             });
         });
+        it("should parse number with sign and space", () => {
+            expect(parse("- 6 food")).to.deep.equal({
+                value: 6,
+                description: "food"
+            });
+        });
         it("should parse description with multiple words", () => {
-            expect(
-                parse("16000 some good project on freelance")
-            ).to.deep.equal({
-                value: 16000,
-                description: "some good project on freelance"
+            expect(parse("16000 some good project on freelance")).to.deep.equal(
+                {
+                    value: 16000,
+                    description: "some good project on freelance"
+                }
+            );
+        });
+        it("should parse description with multiple lines", () => {
+            expect(parse("6 text \n test \n dsds")).to.deep.equal({
+                value: 6,
+                description: "text test dsds"
+            });
+        });
+        it("should parse description without spaces on start and end", () => {
+            expect(parse("6   text \n test \n dsds  ")).to.deep.equal({
+                value: 6,
+                description: "text test dsds"
             });
         });
     });
