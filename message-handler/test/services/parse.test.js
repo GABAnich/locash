@@ -72,6 +72,18 @@ describe("services", () => {
                 description: "food"
             });
         });
+        it("should parse number with spaces between", () => {
+            expect(parse("15 000 sdds")).to.deep.equal({
+                value: 15000,
+                description: "sdds"
+            });
+        });
+        it("should parse number with spaces between", () => {
+            expect(parse("15   0  0 0 sdds")).to.deep.equal({
+                value: 15000,
+                description: "sdds"
+            });
+        });
         it("should parse description with multiple words", () => {
             expect(parse("16000 some good project on freelance")).to.deep.equal(
                 {
@@ -96,7 +108,7 @@ describe("services", () => {
             expect(parse("150.   Jjjk")).to.deep.equal({
                 value: 150,
                 description: "Jjjk"
-            })
+            });
         });
         it("should parse valid value and description new line", () => {
             expect(parse("+ 150 fjjjbc\nGhj")).to.deep.equal({
@@ -109,6 +121,6 @@ describe("services", () => {
                 value: 150,
                 description: "Fhjj"
             });
-        })
+        });
     });
 });
