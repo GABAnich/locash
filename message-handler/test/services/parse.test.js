@@ -92,5 +92,11 @@ describe("services", () => {
                 description: "text test dsds"
             });
         });
+        it("should parse valid value and description", () => {
+            expect(parse("150.   Jjjk")).to.deep.equal({
+                value: 150,
+                description: "Jjjk"
+            })
+        })
     });
 });
