@@ -1,0 +1,16 @@
+{
+    "name": "message-handler",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "mocha test/**"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.20.0",
+        "chai": "^4.2.0",
+        "mocha": "^8.1.3"
+    }
+}
