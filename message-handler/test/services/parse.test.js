@@ -97,6 +97,18 @@ describe("services", () => {
                 value: 150,
                 description: "Jjjk"
             })
+        });
+        it("should parse valid value and description new line", () => {
+            expect(parse("+ 150 fjjjbc\nGhj")).to.deep.equal({
+                value: 150,
+                description: "fjjjbc Ghj"
+            });
+        });
+        it("should parse valid value and description", () => {
+            expect(parse("+150\nFhjj")).to.deep.equal({
+                value: 150,
+                description: "Fhjj"
+            });
         })
     });
 });
