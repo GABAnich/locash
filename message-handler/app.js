@@ -17,8 +17,8 @@ You can track your expenses and incomes here.
 <code>+15000 salary</code>
 <code>-20 coffee</code>
 
-<code>/stats</code> - your transactions statistic.
-<code>/help</code> - more information.
+/stats - your transactions statistic.
+/help - more information.
 `;
 
 exports.lambdaHandler = async (event, context) => {
