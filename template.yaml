@@ -16,6 +16,7 @@ Resources:
         Properties:
             CodeUri: message-handler/
             Handler: app.lambdaHandler
+            Policies: AmazonDynamoDBFullAccess
             Runtime: nodejs12.x
             Events:
                 Message:
@@ -23,6 +24,23 @@ Resources:
                     Properties:
                         Path: /message
                         Method: post
+    TransactionsDynamoDBTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+            AttributeDefinitions:
+                - AttributeName: "chat_id"
+                  AttributeType: "N"
+                - AttributeName: "date"
+                  AttributeType: "N"
+            KeySchema:
+                - AttributeName: "chat_id"
+                  KeyType: "HASH"
+                - AttributeName: "date"
+                  KeyType: "RANGE"
+            ProvisionedThroughput:
+                ReadCapacityUnits: "5"
+                WriteCapacityUnits: "5"
+            TableName: "Transactions"
 
 Outputs:
     # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

@@ -1,6 +1,10 @@
 const axios = require("axios");
+const { DynamoDB } = require("aws-sdk");
 const parse = require("./services/parse");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
+
+const db = new DynamoDB.DocumentClient();
+const TableName = "Transactions";
 
 const sendToUser = async (chat_id, text) =>
     axios.post(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
@@ -21,6 +25,14 @@ You can track your expenses and incomes here.
 /help - more information.
 `;
 
+const createTransaction = ({ chat_id, date, value, description }) =>
+    db
+        .put({
+            TableName,
+            Item: { chat_id, date, value, description }
+        })
+        .promise();
+
 exports.lambdaHandler = async (event, context) => {
     try {
         console.log(event);
@@ -30,14 +42,17 @@ exports.lambdaHandler = async (event, context) => {
         }
 
         const body = JSON.parse(event.body);
-        const { chat, text } = body.message;
+        const { chat, text, date } = body.message;
 
         if (text === "/start" || text === "/help") {
             await sendToUser(chat.id, welcomeText);
             return { statusCode: 200 };
         }
 
-        const msg = JSON.stringify(parse(text));
+        const obj = parse(text);
+        await createTransaction({ chat_id: chat.id, date, ...obj });
+
+        const msg = JSON.stringify(obj);
         await sendToUser(chat.id, msg);
 
         return { statusCode: 200 };
