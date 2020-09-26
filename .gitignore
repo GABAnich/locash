@@ -82,6 +82,11 @@ credentials.json
 .aws-sam
 
 
+### Events ###
+events
+
+
+
 ### OSX ###
 *.DS_Store
 .AppleDouble
