@@ -1,9 +1,12 @@
 const axios = require("axios");
-const { DynamoDB } = require("aws-sdk");
+const AWS  = require("aws-sdk");
 const parse = require("./services/parse");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
+const config = require("./config");
 
-const db = new DynamoDB.DocumentClient();
+AWS.config.update(config);
+
+const db = new AWS.DynamoDB.DocumentClient();
 const TableName = "Transactions";
 
 const sendToUser = async (chat_id, text) =>
