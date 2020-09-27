@@ -10,6 +10,7 @@
     },
     "rules": {
         "no-await-in-loop": "error",
-        "no-var": "error"
+        "no-var": "error",
+        "max-lines": ["error", 100]
     }
 }
