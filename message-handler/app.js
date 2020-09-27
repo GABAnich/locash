@@ -1,5 +1,5 @@
 const axios = require("axios");
-const AWS  = require("aws-sdk");
+const AWS = require("aws-sdk");
 const parse = require("./services/parse");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
 const config = require("./config");
