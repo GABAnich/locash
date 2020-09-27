@@ -37,9 +37,13 @@ const createTransaction = ({ chat_id, date, value, description }) =>
         })
         .promise();
 
-const statsWeek = async (chat_id) => {
-    return [{ chat_id, time: "1601198600", value: -10, description: "es" }];
-}
+const statsWeek = async (chat_id) => db.query({
+    TableName,
+    KeyConditionExpression: "chat_id = :c",
+    ExpressionAttributeValues: {
+        ":c": chat_id
+    },
+}).promise().then(({ Items }) => Items);
 
 exports.lambdaHandler = async (event) => {
     try {
