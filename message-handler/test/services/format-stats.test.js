@@ -17,7 +17,7 @@ describe("services", () => {
             ];
 
             expect(formatStats(stats)).to.equal(
-                "-20 coffee\n+24000 salary\n+8500 freelance\n"
+                "<b>-20</b> <i>coffee</i>\n<b>+24000</b> <i>salary</i>\n<b>+8500</b> <i>freelance</i>\n"
             );
         });
     });
