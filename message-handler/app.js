@@ -1,6 +1,7 @@
 const axios = require("axios");
 const AWS = require("aws-sdk");
 const parse = require("./services/parse");
+const formatStats = require("./services/format-stats");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
 const config = require("./config");
 
@@ -36,6 +37,10 @@ const createTransaction = ({ chat_id, date, value, description }) =>
         })
         .promise();
 
+const statsWeek = async (chat_id) => {
+    return [{ chat_id, time: "1601198600", value: -10, description: "es" }];
+}
+
 exports.lambdaHandler = async (event) => {
     try {
         console.log(event);
@@ -49,6 +54,10 @@ exports.lambdaHandler = async (event) => {
 
         if (text === "/start" || text === "/help") {
             await sendToUser(chat.id, welcomeText);
+            return { statusCode: 200 };
+        } else if (text === "/stats_week") {
+            const weekStats = await statsWeek(chat.id);
+            await sendToUser(chat.id, formatStats(weekStats));
             return { statusCode: 200 };
         }
 
