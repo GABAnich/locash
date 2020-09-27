@@ -36,7 +36,7 @@ const createTransaction = ({ chat_id, date, value, description }) =>
         })
         .promise();
 
-exports.lambdaHandler = async (event, context) => {
+exports.lambdaHandler = async (event) => {
     try {
         console.log(event);
 
