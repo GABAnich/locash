@@ -1,5 +1,6 @@
 const axios = require("axios");
 const AWS = require("aws-sdk");
+const moment = require("moment");
 const parse = require("./services/parse");
 const formatStats = require("./services/format-stats");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
@@ -37,13 +38,24 @@ const createTransaction = ({ chat_id, date, value, description }) =>
         })
         .promise();
 
-const statsWeek = async (chat_id) => db.query({
-    TableName,
-    KeyConditionExpression: "chat_id = :c",
-    ExpressionAttributeValues: {
-        ":c": chat_id
-    },
-}).promise().then(({ Items }) => Items);
+const statsWeek = async ({ chat_id, startDate, endDate }) =>
+    db
+        .query({
+            TableName,
+            KeyConditionExpression:
+                "#chat_id = :chat_id And #date BETWEEN :start_date AND :end_date",
+            ExpressionAttributeValues: {
+                ":chat_id": chat_id,
+                ":start_date": startDate,
+                ":end_date": endDate,
+            },
+            ExpressionAttributeNames: {
+                "#chat_id": "chat_id",
+                "#date": "date"
+            }
+        })
+        .promise()
+        .then(({ Items }) => Items);
 
 exports.lambdaHandler = async (event) => {
     try {
@@ -60,7 +72,11 @@ exports.lambdaHandler = async (event) => {
             await sendToUser(chat.id, welcomeText);
             return { statusCode: 200 };
         } else if (text === "/stats_week") {
-            const weekStats = await statsWeek(chat.id);
+            const weekStats = await statsWeek({
+                chat_id: chat.id,
+                startDate: moment().startOf("week").unix(),
+                endDate: moment().endOf("week").unix(),
+            });
             await sendToUser(chat.id, formatStats(weekStats));
             return { statusCode: 200 };
         }
