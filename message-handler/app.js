@@ -2,7 +2,7 @@ const axios = require("axios");
 const AWS = require("aws-sdk");
 const moment = require("moment");
 const parse = require("./services/parse");
-const formatStats = require("./services/format-stats");
+const formatDailyStats = require("./services/format-daily-stats");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
 const config = require("./config");
 
@@ -81,7 +81,7 @@ exports.lambdaHandler = async (event) => {
                     .endOf("day")
                     .unix()
             });
-            await sendToUser(chat.id, formatStats(weekStats));
+            await sendToUser(chat.id, formatDailyStats(weekStats));
             return { statusCode: 200 };
         }
 
