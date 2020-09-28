@@ -47,7 +47,7 @@ const statsWeek = async ({ chat_id, startDate, endDate }) =>
             ExpressionAttributeValues: {
                 ":chat_id": chat_id,
                 ":start_date": startDate,
-                ":end_date": endDate,
+                ":end_date": endDate
             },
             ExpressionAttributeNames: {
                 "#chat_id": "chat_id",
@@ -74,14 +74,23 @@ exports.lambdaHandler = async (event) => {
         } else if (text === "/stats_week") {
             const weekStats = await statsWeek({
                 chat_id: chat.id,
-                startDate: moment().startOf("week").unix(),
-                endDate: moment().endOf("week").unix(),
+                startDate: moment()
+                    .startOf("week")
+                    .unix(),
+                endDate: moment()
+                    .endOf("week")
+                    .unix()
             });
             await sendToUser(chat.id, formatStats(weekStats));
             return { statusCode: 200 };
         }
 
         const obj = parse(text);
+        if (!obj) {
+            await sendToUser(chat.id, "Pls try again...");
+            return;
+        }
+
         await createTransaction({ chat_id: chat.id, date, ...obj });
 
         const msg = JSON.stringify(obj);
