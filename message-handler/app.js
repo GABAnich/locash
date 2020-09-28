@@ -26,7 +26,7 @@ You can track your expenses and incomes here.
 <code>+15000 salary</code>
 <code>-20 coffee</code>
 
-/stats - your transactions statistic.
+/stats_week - your week transactions statistic.
 /help - more information.
 `;
 
