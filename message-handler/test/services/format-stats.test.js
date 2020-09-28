@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const formatStats = require("../../services/format-daily-stats");
+const formatStats = require("../../services/format-stats");
 
 describe("services", () => {
     describe("format-stats", () => {
