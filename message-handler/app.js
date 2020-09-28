@@ -87,8 +87,8 @@ exports.lambdaHandler = async (event) => {
 
         const obj = parse(text);
         if (!obj) {
-            await sendToUser(chat.id, "Pls try again...");
-            return;
+            await sendToUser(chat.id, "Please try again...");
+            return { statusCode: 200 };
         }
 
         await createTransaction({ chat_id: chat.id, date, ...obj });
