@@ -26,7 +26,7 @@ You can track your expenses and incomes here.
 <code>+15000 salary</code>
 <code>-20 coffee</code>
 
-/stats_week - your week transactions statistic.
+/stats_day - your daily transactions statistic.
 /help - more information.
 `;
 
@@ -38,7 +38,7 @@ const createTransaction = ({ chat_id, date, value, description }) =>
         })
         .promise();
 
-const statsWeek = async ({ chat_id, startDate, endDate }) =>
+const getStats = async ({ chat_id, startDate, endDate }) =>
     db
         .query({
             TableName,
@@ -71,14 +71,14 @@ exports.lambdaHandler = async (event) => {
         if (text === "/start" || text === "/help") {
             await sendToUser(chat.id, welcomeText);
             return { statusCode: 200 };
-        } else if (text === "/stats_week") {
-            const weekStats = await statsWeek({
+        } else if (text === "/stats_day") {
+            const weekStats = await getStats({
                 chat_id: chat.id,
                 startDate: moment()
-                    .startOf("week")
+                    .startOf("day")
                     .unix(),
                 endDate: moment()
-                    .endOf("week")
+                    .endOf("day")
                     .unix()
             });
             await sendToUser(chat.id, formatStats(weekStats));
