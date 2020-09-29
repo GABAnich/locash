@@ -3,6 +3,7 @@ const AWS = require("aws-sdk");
 const moment = require("moment");
 const parse = require("./services/parse");
 const formatDay = require("./stats/day");
+const formatWeek = require("./stats/week");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
 const config = require("./config");
 
@@ -27,6 +28,7 @@ You can track your expenses and incomes here.
 <code>-20 coffee</code>
 
 /stats_day - your daily transactions.
+/stats_week - your week transactions.
 /help - more information.
 `;
 
@@ -72,7 +74,7 @@ exports.lambdaHandler = async (event) => {
             await sendToUser(chat.id, welcomeText);
             return { statusCode: 200 };
         } else if (text === "/stats_day") {
-            const weekStats = await getStats({
+            const stats= await getStats({
                 chat_id: chat.id,
                 startDate: moment()
                     .startOf("day")
@@ -81,7 +83,19 @@ exports.lambdaHandler = async (event) => {
                     .endOf("day")
                     .unix()
             });
-            await sendToUser(chat.id, formatDay(weekStats));
+            await sendToUser(chat.id, formatDay(stats));
+            return { statusCode: 200 };
+        } else if (text === "/stats_week") {
+            const stats = await getStats({
+                chat_id: chat.id,
+                startDate: moment()
+                    .startOf("week")
+                    .unix(),
+                endDate: moment()
+                    .endOf("week")
+                    .unix()
+            });
+            await sendToUser(chat.id, formatWeek(stats));
             return { statusCode: 200 };
         }
 
