@@ -1,4 +1,4 @@
-const format = require("../services/format-stats");
+const format = require("./format-stats");
 
 module.exports = (stats) => {
     if (!stats.length) return "There no transactions in this time range.";
