@@ -4,6 +4,17 @@ const handleTransaction = require("./transaction");
 const { welcomeText } = require("./text");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
 
+const handleMessage = async ({ chat, text, date }) => {
+    if (text === "/start" || text === "/help") {
+        await sendToUser(chat.id, welcomeText);
+        return { statusCode: 200 };
+    } else if (text.startsWith("/stats_")) {
+        return handleStats({ chat, text });
+    } else {
+        return handleTransaction({ chat, text, date });
+    }
+};
+
 exports.lambdaHandler = async (event) => {
     try {
         console.log(event);
@@ -15,14 +26,7 @@ exports.lambdaHandler = async (event) => {
         const body = JSON.parse(event.body);
         const { chat, text, date } = body.message;
 
-        if (text === "/start" || text === "/help") {
-            await sendToUser(chat.id, welcomeText);
-            return { statusCode: 200 };
-        } else if (text.startsWith("/stats_")) {
-            return handleStats({ chat, text });
-        } else {
-            return handleTransaction({ chat, text, date });
-        }
+        return handleMessage({ chat, text, date });
     } catch (err) {
         console.log(err);
         return err;
