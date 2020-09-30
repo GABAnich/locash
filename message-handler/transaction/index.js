@@ -1,18 +1,7 @@
-const AWS = require("aws-sdk");
+const { createTransaction } = require("../services/dynamodb");
 const { sendToUser } = require("../services/telegram");
 const parse = require("./parse");
 const { pleaseTryAgain, done } = require("../text")
-
-const db = new AWS.DynamoDB.DocumentClient();
-const TableName = "Transactions";
-
-const createTransaction = ({ chat_id, date, value, description }) =>
-    db
-        .put({
-            TableName,
-            Item: { chat_id, date, value, description }
-        })
-        .promise();
 
 module.exports = async ({ chat, text, date }) => {
     const obj = parse(text);

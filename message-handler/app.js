@@ -1,12 +1,8 @@
-const AWS = require("aws-sdk");
 const { sendToUser } = require("./services/telegram");
 const handleStats = require("./stats");
 const handleTransaction = require("./transaction");
 const { welcomeText } = require("./text");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
-const config = require("./config");
-
-AWS.config.update(config);
 
 exports.lambdaHandler = async (event) => {
     try {
