@@ -1,0 +1,31 @@
+{
+  "name": "locash",
+  "version": "1.0.0",
+  "description": "This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.760.0",
+    "chai": "^4.2.0",
+    "moment": "^2.29.0"
+  },
+  "devDependencies": {
+    "mocha": "^8.1.3"
+  },
+  "scripts": {
+    "test": "mocha test --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GABAnich/locash.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GABAnich/locash/issues"
+  },
+  "homepage": "https://github.com/GABAnich/locash#readme"
+}
