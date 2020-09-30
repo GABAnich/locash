@@ -1,5 +1,5 @@
-const axios = require("axios");
 const AWS = require("aws-sdk");
+const { sendToUser } = require("./services/telegram");
 const parse = require("./services/parse");
 const handleStats = require("./stats");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
@@ -9,13 +9,6 @@ AWS.config.update(config);
 
 const db = new AWS.DynamoDB.DocumentClient();
 const TableName = "Transactions";
-
-const sendToUser = async (chat_id, text) =>
-    axios.post(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
-        chat_id,
-        text,
-        parse_mode: "HTML"
-    });
 
 const welcomeText = `
 <b>Hi</b>,
