@@ -13,11 +13,11 @@ const splitStatsByDay = (stats) => {
         res[key].push(transaction);
     });
     return res;
-}
+};
 
 module.exports = (stats) => {
     if (!stats.length) return noTransactions;
-    let days= "";
+    let days = "";
     const statsByDay = splitStatsByDay(stats);
     for (const date in statsByDay) {
         days += `${date}\n`;
@@ -25,8 +25,10 @@ module.exports = (stats) => {
         days += "\n";
     }
     const { income, spending, total } = footer(stats);
-    return `${days}` +
+    return (
+        `${days}` +
         `<b>Income</b>: ${income}\n` +
         `<b>Spending</b>: ${spending}\n` +
-        `<b>Total</b>: ${total}\n`;
-}
+        `<b>Total</b>: ${total}\n`
+    );
+};

@@ -10,6 +10,6 @@ module.exports = (stats) => {
     });
     income = income > 0 ? `+${income}` : income;
     total = total > 0 ? `+${total}` : total;
-    
+
     return { income, spending, total };
-}
+};

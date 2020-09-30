@@ -1,4 +1,5 @@
-module.exports = (stats) => stats
+module.exports = (stats) =>
+    stats
         .filter((transaction) => transaction && transaction.value)
         .map(
             ({ value, description }) =>

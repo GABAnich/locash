@@ -9,7 +9,7 @@ module.exports.createTransaction = ({ chat_id, date, value, description }) =>
     db
         .put({
             TableName: "Transactions",
-            Item: { chat_id, date, value, description }
+            Item: { chat_id, date, value, description },
         })
         .promise();
 
@@ -22,12 +22,12 @@ module.exports.getTransactions = ({ chat_id, startDate, endDate }) =>
             ExpressionAttributeValues: {
                 ":chat_id": chat_id,
                 ":start_date": startDate,
-                ":end_date": endDate
+                ":end_date": endDate,
             },
             ExpressionAttributeNames: {
                 "#chat_id": "chat_id",
-                "#date": "date"
-            }
+                "#date": "date",
+            },
         })
         .promise()
         .then(({ Items }) => Items);

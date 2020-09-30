@@ -1,7 +1,7 @@
 const { createTransaction } = require("../services/dynamodb");
 const { sendToUser } = require("../services/telegram");
 const parse = require("./parse");
-const { pleaseTryAgain, done } = require("../text")
+const { pleaseTryAgain, done } = require("../text");
 
 module.exports = async ({ chat, text, date }) => {
     const obj = parse(text);

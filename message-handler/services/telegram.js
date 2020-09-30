@@ -5,7 +5,7 @@ const sendToUser = async (chat_id, text) =>
     axios.post(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
         chat_id,
         text,
-        parse_mode: "HTML"
+        parse_mode: "HTML",
     });
 
 module.exports = { sendToUser };

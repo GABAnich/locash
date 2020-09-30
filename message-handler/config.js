@@ -1,4 +1,4 @@
-const { LOCAL_ENDPOINT } = require("./credentials.json"); 
+const { LOCAL_ENDPOINT } = require("./credentials.json");
 
 const config = {};
 
@@ -7,4 +7,3 @@ if (process.env.AWS_SAM_LOCAL) {
 }
 
 module.exports = config;
-

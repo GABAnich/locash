@@ -19,7 +19,7 @@ exports.lambdaHandler = async (event) => {
             await sendToUser(chat.id, welcomeText);
             return { statusCode: 200 };
         } else if (text.startsWith("/stats_")) {
-            return handleStats({ chat, text })
+            return handleStats({ chat, text });
         } else {
             return handleTransaction({ chat, text, date });
         }

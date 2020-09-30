@@ -8,7 +8,7 @@ describe("message-handler", () => {
                 const stats = [
                     { value: -20, description: "coffee" },
                     { value: +24000, description: "salary" },
-                    { value: 8500, description: "freelance" }
+                    { value: 8500, description: "freelance" },
                 ];
 
                 expect(formatStats(stats)).to.equal(
@@ -21,7 +21,7 @@ describe("message-handler", () => {
                     null,
                     { value: false },
                     { value: +24000, description: "salary" },
-                    { value: 8500, description: "freelance" }
+                    { value: 8500, description: "freelance" },
                 ];
 
                 expect(formatStats(stats)).to.equal(

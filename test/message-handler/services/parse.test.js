@@ -34,93 +34,93 @@ describe("message-handler", () => {
             it("should parse, valid msg", () => {
                 expect(parse("-6 transport")).to.deep.equal({
                     value: -6,
-                    description: "transport"
+                    description: "transport",
                 });
             });
             it("should parse, string with spaces at begining", () => {
                 expect(parse(" -6 transport")).to.deep.equal({
                     value: -6,
-                    description: "transport"
+                    description: "transport",
                 });
             });
             it("should parse, string with spaces at end", () => {
                 expect(parse("-6 transport  ")).to.deep.equal({
                     value: -6,
-                    description: "transport"
+                    description: "transport",
                 });
             });
             it("should parse with spaces around", () => {
                 expect(parse("  -6 transport  ")).to.deep.equal({
                     value: -6,
-                    description: "transport"
+                    description: "transport",
                 });
             });
             it("should parse number with sign", () => {
                 expect(parse("-6 transport")).to.deep.equal({
                     value: -6,
-                    description: "transport"
+                    description: "transport",
                 });
             });
             it("should parse number without sign", () => {
                 expect(parse("6 salary")).to.deep.equal({
                     value: 6,
-                    description: "salary"
+                    description: "salary",
                 });
             });
             it("should parse number with sign and space", () => {
                 expect(parse("- 6 food")).to.deep.equal({
                     value: -6,
-                    description: "food"
+                    description: "food",
                 });
             });
             it("should parse number with spaces between", () => {
                 expect(parse("15 000 sdds")).to.deep.equal({
                     value: 15000,
-                    description: "sdds"
+                    description: "sdds",
                 });
             });
             it("should parse number with spaces between", () => {
                 expect(parse("15   0  0 0 sdds")).to.deep.equal({
                     value: 15000,
-                    description: "sdds"
+                    description: "sdds",
                 });
             });
             it("should parse description with multiple words", () => {
-                expect(parse("16000 some good project on freelance")).to.deep.equal(
-                    {
-                        value: 16000,
-                        description: "some good project on freelance"
-                    }
-                );
+                expect(
+                    parse("16000 some good project on freelance")
+                ).to.deep.equal({
+                    value: 16000,
+                    description: "some good project on freelance",
+                });
             });
             it("should parse description with multiple lines", () => {
                 expect(parse("6 text \n test \n dsds")).to.deep.equal({
                     value: 6,
-                    description: "text test dsds"
+                    description: "text test dsds",
                 });
             });
             it("should parse description without spaces on start and end", () => {
                 expect(parse("6   text \n test \n dsds  ")).to.deep.equal({
                     value: 6,
-                    description: "text test dsds"
+                    description: "text test dsds",
                 });
             });
             it("should parse valid value and description", () => {
                 expect(parse("150.   Jjjk")).to.deep.equal({
                     value: 150,
-                    description: "Jjjk"
+                    description: "Jjjk",
                 });
             });
             it("should parse valid value and description new line", () => {
                 expect(parse("+ 150 fjjjbc\nGhj")).to.deep.equal({
                     value: 150,
-                    description: "fjjjbc Ghj"
+                    description: "fjjjbc Ghj",
                 });
             });
             it("should parse valid value and description", () => {
                 expect(parse("+150\nFhjj")).to.deep.equal({
                     value: 150,
-                    description: "Fhjj"
+                    description: "Fhjj",
                 });
             });
             it("should return null", () => {
@@ -128,4 +128,4 @@ describe("message-handler", () => {
             });
         });
     });
-})
+});

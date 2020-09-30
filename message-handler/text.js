@@ -13,12 +13,10 @@ You can track your expenses and incomes here.
 /help - more information.
 `;
 
-module.exports.pleaseTryAgain = "Please try again..."
+module.exports.pleaseTryAgain = "Please try again...";
 
 module.exports.done = "Done.\n/help - list of commands";
 
 module.exports.commandNotFound = "Command not found";
 
 module.exports.noTransactions = "There no transactions in this time range.";
-
-
