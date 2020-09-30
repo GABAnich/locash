@@ -1,7 +1,7 @@
 const isContainNumber = (msg) => /\d/.test(msg);
 const removeSpacesTabs = (msg) => msg.replace(/\s\s+/g, " ");
 const removeSpacePlusSign = (msg) => msg.replace(/\+ /g, "+");
-const removeSpaceMinusSign = (msg) => msg.replace(/\- /g, "-");
+const removeSpaceMinusSign = (msg) => msg.replace(/- /g, "-");
 const replaceNewLinesBySpace = (msg) => msg.replace(/\n/g, " ");
 const removeSpaceBeetwenNumbers = (msg) => msg.replace(/(\d)\s+(?=\d)/g, "$1");
 

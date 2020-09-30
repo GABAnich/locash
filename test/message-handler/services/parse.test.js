@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const { expect } = require("chai");
 const parse = require("../../../message-handler/transaction/parse");
 

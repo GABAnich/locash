@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const { expect } = require("chai");
 const moment = require("moment");
 const format = require("../../../message-handler/stats/days");
