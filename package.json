@@ -18,7 +18,8 @@
   },
   "scripts": {
     "test": "mocha test --recursive",
-    "prettier": "prettier --write --print-width 80 --tab-width 4 --use-tabs false --arrow-parens always ./**/*.{js,json}"
+    "prettier": "prettier --write --print-width 80 --tab-width 4 --use-tabs false --arrow-parens always ./**/*.{js,json}",
+    "eslint": "eslint ./"
   },
   "repository": {
     "type": "git",
