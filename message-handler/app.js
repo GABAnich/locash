@@ -1,9 +1,7 @@
 const axios = require("axios");
 const AWS = require("aws-sdk");
-const moment = require("moment");
 const parse = require("./services/parse");
-const formatDay = require("./stats/day");
-const formatDays = require("./stats/days");
+const handleStats = require("./stats");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
 const config = require("./config");
 
@@ -75,46 +73,8 @@ exports.lambdaHandler = async (event) => {
         if (text === "/start" || text === "/help") {
             await sendToUser(chat.id, welcomeText);
             return { statusCode: 200 };
-        } else if (text === "/stats_day") {
-            const stats= await getStats({
-                chat_id: chat.id,
-                startDate: moment()
-                    .startOf("day")
-                    .unix(),
-                endDate: moment()
-                    .endOf("day")
-                    .unix()
-            });
-            await sendToUser(chat.id, formatDay(stats));
-            return { statusCode: 200 };
-        } else if (text === "/stats_week") {
-            const stats = await getStats({
-                chat_id: chat.id,
-                startDate: moment()
-                    .startOf("week")
-                    .unix(),
-                endDate: moment()
-                    .endOf("week")
-                    .unix()
-            });
-            await sendToUser(chat.id, formatDays(stats));
-            return { statusCode: 200 };
-        } else if (text === "/stats_month") {
-            const stats = await getStats({
-                chat_id: chat.id,
-                startDate: moment().startOf("month").unix(),
-                endDate: moment().endOf("month").unix()
-            });
-            await sendToUser(chat.id, formatDays(stats));
-            return { statusCode: 200 };
-        } else if (text === "/stats_past_seven_day") {
-            const stats = await getStats({
-                chat_id: chat.id,
-                startDate: moment().subtract(7,'d').startOf("day").unix(),
-                endDate: moment().endOf("day").unix()
-            });
-            await sendToUser(chat.id, formatDays(stats));
-            return { statusCode: 200 };
+        } else if (text.startsWith("/stats_")) {
+            return handleStats({ chat, text })
         }
 
         const obj = parse(text);
