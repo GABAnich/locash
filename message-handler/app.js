@@ -116,7 +116,7 @@ exports.lambdaHandler = async (event) => {
 
         await createTransaction({ chat_id: chat.id, date, ...obj });
 
-        const msg = JSON.stringify(obj);
+        const msg = "Done.\n/help - list of commands";
         await sendToUser(chat.id, msg);
 
         return { statusCode: 200 };
