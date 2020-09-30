@@ -14,13 +14,15 @@
     "prettier": "^2.1.2"
   },
   "devDependencies": {
+    "husky": "^5.0.0-alpha.5",
     "mocha": "^8.1.3"
   },
   "scripts": {
     "test": "mocha test --recursive",
     "prettier": "prettier --write --print-width 80 --tab-width 4 --use-tabs false --arrow-parens always ./**/*.{js,json}",
     "eslint": "eslint ./",
-    "check-all": "npm run prettier && npm run eslint && npm run test"
+    "check-all": "npm run prettier && npm run eslint && npm run test",
+    "postinstall": "husky install"
   },
   "repository": {
     "type": "git",
