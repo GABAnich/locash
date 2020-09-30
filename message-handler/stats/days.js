@@ -1,4 +1,5 @@
 const moment = require("moment");
+const { noTransactions } = require("../text");
 const format = require("./format-stats");
 const footer = require("./footer");
 
@@ -15,7 +16,7 @@ const splitStatsByDay = (stats) => {
 }
 
 module.exports = (stats) => {
-    if (!stats.length) return "There no transactions in this time range.";
+    if (!stats.length) return noTransactions;
     let days= "";
     const statsByDay = splitStatsByDay(stats);
     for (const date in statsByDay) {
