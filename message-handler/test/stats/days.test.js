@@ -1,12 +1,12 @@
 const { expect } = require("chai");
 const moment = require("moment");
-const formatWeek = require("../../stats/week");
+const format = require("../../stats/days");
 
 describe("stats", () => {
-    describe("week", () => {
+    describe("days", () => {
         it("should return line about there no stats", () => {
-            expect(formatWeek([])).to.be.a("string");
-            expect(formatWeek([])).to.equal(
+            expect(format([])).to.be.a("string");
+            expect(format([])).to.equal(
                 "There no transactions in this time range."
             );
         });
@@ -22,7 +22,7 @@ describe("stats", () => {
                 { value: 8500, description: "freelance", date: moment().day(6).date(7).month(1).year(2020).unix() }
             ];
 
-            expect(formatWeek(stats)).to.equal(
+            expect(format(stats)).to.equal(
                 "1 February 2020\n" +
                 "<b>-6</b> <i>bus</i>\n" +
                 "\n" +
