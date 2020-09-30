@@ -28,7 +28,8 @@ You can track your expenses and incomes here.
 <code>-20 coffee</code>
 
 /stats_day - your daily transactions.
-/stats_week - your week transactions.
+/stats_week - your weekly transactions.
+/stats_month - your monthly transactions.
 /help - more information.
 `;
 
@@ -94,6 +95,14 @@ exports.lambdaHandler = async (event) => {
                 endDate: moment()
                     .endOf("week")
                     .unix()
+            });
+            await sendToUser(chat.id, formatDays(stats));
+            return { statusCode: 200 };
+        } else if (text === "/stats_month") {
+            const stats = await getStats({
+                chat_id: chat.id,
+                startDate: moment().startOf("month").unix(),
+                endDate: moment().endOf("month").unix()
             });
             await sendToUser(chat.id, formatDays(stats));
             return { statusCode: 200 };
