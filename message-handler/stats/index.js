@@ -1,13 +1,13 @@
 const moment = require("moment");
+const { getTransactions } = require("../services/dynamodb");
 const { sendToUser } = require("../services/telegram");
 const { commandNotFound } = require("../text");
 const formatDay = require("./day");
 const formatDays = require("./days");
-const getStats = require("./get-stats");
 
 module.exports = async ({ chat, text }) => {
     if (text === "/stats_day") {
-        const stats = await getStats({
+        const stats = await getTransactions({
             chat_id: chat.id,
             startDate: moment()
                 .startOf("day")
@@ -19,7 +19,7 @@ module.exports = async ({ chat, text }) => {
         await sendToUser(chat.id, formatDay(stats));
         return { statusCode: 200 };
     } else if (text === "/stats_week") {
-        const stats = await getStats({
+        const stats = await getTransactions({
             chat_id: chat.id,
             startDate: moment()
                 .startOf("week")
@@ -31,7 +31,7 @@ module.exports = async ({ chat, text }) => {
         await sendToUser(chat.id, formatDays(stats));
         return { statusCode: 200 };
     } else if (text === "/stats_month") {
-        const stats = await getStats({
+        const stats = await getTransactions({
             chat_id: chat.id,
             startDate: moment()
                 .startOf("month")
@@ -43,7 +43,7 @@ module.exports = async ({ chat, text }) => {
         await sendToUser(chat.id, formatDays(stats));
         return { statusCode: 200 };
     } else if (text === "/stats_past_seven_day") {
-        const stats = await getStats({
+        const stats = await getTransactions({
             chat_id: chat.id,
             startDate: moment()
                 .subtract(7, "d")
