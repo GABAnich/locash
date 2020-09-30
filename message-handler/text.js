@@ -17,3 +17,5 @@ module.exports.pleaseTryAgain = "Please try again..."
 
 module.exports.done = "Done.\n/help - list of commands";
 
+module.exports.commandNotFound = "Command not found";
+

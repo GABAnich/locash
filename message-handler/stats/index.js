@@ -1,5 +1,6 @@
 const moment = require("moment");
 const { sendToUser } = require("../services/telegram");
+const { commandNotFound } = require("../text");
 const formatDay = require("./day");
 const formatDays = require("./days");
 const getStats = require("./get-stats");
@@ -55,7 +56,7 @@ module.exports = async ({ chat, text }) => {
         await sendToUser(chat.id, formatDays(stats));
         return { statusCode: 200 };
     } else {
-        await sendToUser(chat.id, "Command not found");
+        await sendToUser(chat.id, commandNotFound);
         return { statusCode: 200 }
     }
 };
