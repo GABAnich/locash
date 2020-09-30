@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 const { sendToUser } = require("../services/telegram");
-const parse = require("../services/parse");
+const parse = require("./parse");
 
 const db = new AWS.DynamoDB.DocumentClient();
 const TableName = "Transactions";
