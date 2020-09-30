@@ -19,7 +19,8 @@
   "scripts": {
     "test": "mocha test --recursive",
     "prettier": "prettier --write --print-width 80 --tab-width 4 --use-tabs false --arrow-parens always ./**/*.{js,json}",
-    "eslint": "eslint ./"
+    "eslint": "eslint ./",
+    "check-all": "npm run prettier && npm run eslint && npm run test"
   },
   "repository": {
     "type": "git",
