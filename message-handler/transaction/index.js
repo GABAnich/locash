@@ -1,7 +1,7 @@
 const AWS = require("aws-sdk");
 const { sendToUser } = require("../services/telegram");
 const parse = require("./parse");
-const { pleaseTryAgain } = require("../text")
+const { pleaseTryAgain, done } = require("../text")
 
 const db = new AWS.DynamoDB.DocumentClient();
 const TableName = "Transactions";
@@ -23,8 +23,7 @@ module.exports = async ({ chat, text, date }) => {
 
     await createTransaction({ chat_id: chat.id, date, ...obj });
 
-    const msg = "Done.\n/help - list of commands";
-    await sendToUser(chat.id, msg);
+    await sendToUser(chat.id, done);
 
     return { statusCode: 200 };
 };

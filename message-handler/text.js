@@ -15,3 +15,5 @@ You can track your expenses and incomes here.
 
 module.exports.pleaseTryAgain = "Please try again..."
 
+module.exports.done = "Done.\n/help - list of commands";
+
