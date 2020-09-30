@@ -1,14 +1,11 @@
 const AWS = require("aws-sdk");
 const { sendToUser } = require("./services/telegram");
-const parse = require("./services/parse");
 const handleStats = require("./stats");
+const handleTransaction = require("./transaction");
 const { TELEGRAM_TOKEN } = require("./credentials.json");
 const config = require("./config");
 
 AWS.config.update(config);
-
-const db = new AWS.DynamoDB.DocumentClient();
-const TableName = "Transactions";
 
 const welcomeText = `
 <b>Hi</b>,
@@ -24,14 +21,6 @@ You can track your expenses and incomes here.
 /stats_past_seven_day - your transactions in last 7 days.
 /help - more information.
 `;
-
-const createTransaction = ({ chat_id, date, value, description }) =>
-    db
-        .put({
-            TableName,
-            Item: { chat_id, date, value, description }
-        })
-        .promise();
 
 exports.lambdaHandler = async (event) => {
     try {
@@ -49,20 +38,9 @@ exports.lambdaHandler = async (event) => {
             return { statusCode: 200 };
         } else if (text.startsWith("/stats_")) {
             return handleStats({ chat, text })
+        } else {
+            return handleTransaction({ chat, text, date });
         }
-
-        const obj = parse(text);
-        if (!obj) {
-            await sendToUser(chat.id, "Please try again...");
-            return { statusCode: 200 };
-        }
-
-        await createTransaction({ chat_id: chat.id, date, ...obj });
-
-        const msg = "Done.\n/help - list of commands";
-        await sendToUser(chat.id, msg);
-
-        return { statusCode: 200 };
     } catch (err) {
         console.log(err);
         return err;
