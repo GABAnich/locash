@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 const { expect } = require("chai");
 const formatStats = require("../../../message-handler/stats/format-stats");
 
