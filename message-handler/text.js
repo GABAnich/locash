@@ -13,3 +13,5 @@ You can track your expenses and incomes here.
 /help - more information.
 `;
 
+module.exports.pleaseTryAgain = "Please try again..."
+
