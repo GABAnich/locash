@@ -21,5 +21,7 @@ module.exports = (msg) => {
     const value = parseFloat(splitedMsg[0]);
     const description = splitedMsg.slice(1).join(" ");
 
+    if (!value) return null;
+
     return { value, description };
 };

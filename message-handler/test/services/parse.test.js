@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const parse = require("../../services/parse");
+const parse = require("../../transaction/parse");
 
 const validMsg = "-6 transport";
 const invalidMsg = "tr";
@@ -121,6 +121,9 @@ describe("services", () => {
                 value: 150,
                 description: "Fhjj"
             });
+        });
+        it("should return null", () => {
+            expect(parse("sdf5545 sdfsdf")).to.equal(null);
         });
     });
 });
