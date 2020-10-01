@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 const { expect } = require("chai");
 const parse = require("../../../message-handler/stats/parse-stats-specific-month");
@@ -29,6 +30,72 @@ describe("message-handler", () => {
             it("should return { month, year }", () => {
                 expect(parse("/stats_month_January_2000")).to.deep.equal({
                     month: "January",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_February_2000")).to.deep.equal({
+                    month: "February",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_March_2000")).to.deep.equal({
+                    month: "March",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_April_2000")).to.deep.equal({
+                    month: "April",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_May_2000")).to.deep.equal({
+                    month: "May",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_June_2000")).to.deep.equal({
+                    month: "June",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_July_2000")).to.deep.equal({
+                    month: "July",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_August_2000")).to.deep.equal({
+                    month: "August",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_September_2000")).to.deep.equal({
+                    month: "September",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_October_2000")).to.deep.equal({
+                    month: "October",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_November_2000")).to.deep.equal({
+                    month: "November",
+                    year: 2000,
+                });
+            });
+            it("should return { month, year }", () => {
+                expect(parse("/stats_month_December_2000")).to.deep.equal({
+                    month: "December",
                     year: 2000,
                 });
             });
