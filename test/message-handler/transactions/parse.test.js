@@ -95,38 +95,17 @@ describe("message-handler", () => {
                     description: "some good project on freelance",
                 });
             });
-            it("should parse description with multiple lines", () => {
-                expect(parse("6 text \n test \n dsds")).to.deep.equal({
-                    value: 6,
-                    description: "text test dsds",
-                });
-            });
-            it("should parse description without spaces on start and end", () => {
-                expect(parse("6   text \n test \n dsds  ")).to.deep.equal({
-                    value: 6,
-                    description: "text test dsds",
-                });
-            });
             it("should parse valid value and description", () => {
                 expect(parse("150.   Jjjk")).to.deep.equal({
                     value: 150,
                     description: "Jjjk",
                 });
             });
-            it("should parse valid value and description new line", () => {
-                expect(parse("+ 150 fjjjbc\nGhj")).to.deep.equal({
-                    value: 150,
-                    description: "fjjjbc Ghj",
-                });
-            });
-            it("should parse valid value and description", () => {
-                expect(parse("+150\nFhjj")).to.deep.equal({
-                    value: 150,
-                    description: "Fhjj",
-                });
-            });
             it("should return null", () => {
                 expect(parse("sdf5545 sdfsdf")).to.equal(null);
+            });
+            it("should return null, multiple lines", () => {
+                expect(parse("-20 coffe\n-11 ice cream")).to.equal(null);
             });
         });
     });
