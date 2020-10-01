@@ -4,6 +4,7 @@ const { sendToUser } = require("../services/telegram");
 const { commandNotFound } = require("../text");
 const formatDay = require("./day");
 const formatDays = require("./days");
+const formatMonths = require("./months");
 const parseStatsSpecificMonth = require("./parse-stats-specific-month");
 
 const statsDay = async (chat) => {
@@ -62,6 +63,16 @@ const statsPastSevenDay = async (chat) => {
     return { statusCode: 200 };
 };
 
+const statsYear = async (chat) => {
+    const stats = await getTransactions({
+        chat_id: chat.id,
+        startDate: moment().startOf("year").unix(),
+        endDate: moment().endOf("year").unix(),
+    });
+    await sendToUser(chat.id, formatMonths(stats));
+    return { statusCode: 200 };
+};
+
 module.exports = async ({ chat, text }) => {
     if (text === "/stats_day") {
         return statsDay(chat);
@@ -73,6 +84,8 @@ module.exports = async ({ chat, text }) => {
         return statsSpecificMonth({ chat, text });
     } else if (text === "/stats_past_seven_day") {
         return statsPastSevenDay(chat);
+    } else if (text === "/stats_year") {
+        return statsYear(chat);
     } else {
         await sendToUser(chat.id, commandNotFound);
         return { statusCode: 200 };

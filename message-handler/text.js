@@ -12,6 +12,7 @@ You can track your expenses and incomes here.
 /stats_month_[month]_[year] - your transactions in specific month.
 Example: /stats_month_January_2020
 /stats_past_seven_day - your transactions in last 7 days.
+/stats_year - your yearly transactions.
 /help - more information.
 `;
 
