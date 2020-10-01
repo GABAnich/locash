@@ -37,3 +37,18 @@ module.exports.getTransactions = ({ chat_id, startDate, endDate }) =>
         })
         .promise()
         .then(({ Items }) => Items);
+
+module.exports.getAllTransactions = (chat_id) =>
+    db
+        .query({
+            TableName: "Transactions",
+            KeyConditionExpression: "#chat_id = :chat_id",
+            ExpressionAttributeValues: {
+                ":chat_id": chat_id,
+            },
+            ExpressionAttributeNames: {
+                "#chat_id": "chat_id",
+            },
+        })
+        .promise()
+        .then(({ Items }) => Items);
