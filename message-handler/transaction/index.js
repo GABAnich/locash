@@ -10,7 +10,7 @@ module.exports = async ({ chat, text, date }) => {
         return { statusCode: 200 };
     }
 
-    await createTransaction({ chat_id: chat.id, date, ...obj });
+    await createTransaction({ chat_id: chat.id, date, original: text, ...obj });
 
     await sendToUser(chat.id, done);
 

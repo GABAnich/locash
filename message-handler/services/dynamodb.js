@@ -5,11 +5,17 @@ AWS.config.update(config);
 
 const db = new AWS.DynamoDB.DocumentClient();
 
-module.exports.createTransaction = ({ chat_id, date, value, description }) =>
+module.exports.createTransaction = ({
+    chat_id,
+    date,
+    value,
+    description,
+    original,
+}) =>
     db
         .put({
             TableName: "Transactions",
-            Item: { chat_id, date, value, description },
+            Item: { chat_id, date, value, description, original },
         })
         .promise();
 
