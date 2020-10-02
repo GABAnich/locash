@@ -3,7 +3,7 @@ const { getTransactions } = require("../services/dynamodb");
 const formatDays = require("./days");
 const { sendToUser } = require("../services/telegram");
 
-module.exprots = async (chat) => {
+module.exports = async (chat) => {
     const stats = await getTransactions({
         chat_id: chat.id,
         startDate: moment().startOf("week").unix(),
