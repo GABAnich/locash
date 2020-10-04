@@ -24,3 +24,5 @@ module.exports.done = "Done.\n/help - list of commands";
 module.exports.commandNotFound = "Command not found";
 
 module.exports.noTransactions = "There no transactions in this time range.";
+
+module.exports.valueTooBig = "Value is too big";

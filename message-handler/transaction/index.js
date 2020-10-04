@@ -1,12 +1,15 @@
 const { createTransaction } = require("../services/dynamodb");
 const { sendToUser } = require("../services/telegram");
 const parse = require("./parse");
-const { pleaseTryAgain, done } = require("../text");
+const { pleaseTryAgain, done, valueTooBig } = require("../text");
 
 module.exports = async ({ chat, text, date }) => {
     const obj = parse(text);
     if (!obj) {
         await sendToUser(chat.id, pleaseTryAgain);
+        return { statusCode: 200 };
+    } else if (obj.value > 1000000000) {
+        await sendToUser(chat.id, valueTooBig);
         return { statusCode: 200 };
     }
 
