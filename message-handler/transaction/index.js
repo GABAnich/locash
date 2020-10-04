@@ -8,7 +8,7 @@ module.exports = async ({ chat, text, date }) => {
     if (!obj) {
         await sendToUser(chat.id, pleaseTryAgain);
         return { statusCode: 200 };
-    } else if (obj.value > 1000000000) {
+    } else if (Math.abs(obj.value) > 1000000000) {
         await sendToUser(chat.id, valueTooBig);
         return { statusCode: 200 };
     }
