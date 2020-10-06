@@ -19,9 +19,14 @@ There a lot of apps that do the same. They might be paid, contains ads, they sto
 `Some photos` - will be in future
 
 
-### Architecture or How Locash works
+### How Locash works
 
-image of architecture
+![Architecture](https://github.com/GABAnich/locash/blob/master/img/locash-aws.png)
+
+
+### Architecture in future :smirk:
+
+![ArchitectureFuture](https://github.com/GABAnich/locash/blob/master/img/locash-aws-future.png)
 
 
 ### Instalation
