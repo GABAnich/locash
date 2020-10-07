@@ -31,18 +31,17 @@ There a lot of apps that do the same. They might be paid, contains ads, they sto
 
 ### Instalation
 
-!!! not done
+1. `nvm use`
+2. `npm install`
+3. create telegram bot in @BotFather and set [WebHook](https://core.telegram.org/bots/api#setwebhook)
+4. Copy `message-handler/credentials.example.json` into `message-handler/credentials.json`
+5. Run `docker run -d -p 8000:8000 amazon/dynamodb-local`
+6. Run `aws dynamodb create-table --cli-input-json file://transactions.json --endpoint-url http://<local-dynamodb>:8000`
 
-1. create telegram bot in @BotFather and set [WebHook](https://core.telegram.org/bots/api#setwebhook)
-2. Setup `message-handler/credentials.json`
-  2.1 `
-  {
-      "TELEGRAM_TOKEN": "<token>",
-      "LOCAL_ENDPOINT": "responsible for AWS DynamoDB local instance"
-  }`
-3. `nvm use`
-4. `npm install`
-5. `sam local start-api`
-6. `curl -X POST -H "Content-Type: application/json" -d '{"message":{"chat": {"id": 31}, "text": "-20 coffee", "date": 1601022097 }}' http://127.0.0.1:3000/message/\?token\=<token>`
+
+### Example
+
+1. `sam local start-api`
+2. `curl -X POST -H "Content-Type: application/json" -d '{"message":{"chat": {"id": 31}, "text": "-20 coffee", "date": 1601022097 }}' http://127.0.0.1:3000/message/\?token\=<token>`
 
 
