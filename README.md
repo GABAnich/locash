@@ -16,7 +16,7 @@ There a lot of apps that do the same. They might be paid, contains ads, they sto
 
 ### Examples
 
-`Some photos` - will be in future
+![Example](https://github.com/GABAnich/locash/blob/master/img/example.png)
 
 
 ### How Locash works
