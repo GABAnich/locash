@@ -1,0 +1,27 @@
+{
+    "TableName": "Transactions",
+    "KeySchema": [
+        {
+            "AttributeName": "chat_id",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "date",
+            "KeyType": "RANGE"
+        }
+    ],
+    "AttributeDefinitions": [
+        {
+            "AttributeName": "chat_id",
+            "AttributeType": "N"
+        },
+        {
+            "AttributeName": "date",
+            "AttributeType": "N"
+        }
+    ],
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+    }
+}
