@@ -15,6 +15,6 @@ jobs:
         with:
           version: 12 
       - run: npm install
-      - run: npm check-all
+      - run: npm run check-all
         env:
           CI: true
