@@ -6,6 +6,7 @@ stack_name = "locash"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1h8e2lfoc21uu"
 s3_prefix = "locash"
 region = "us-east-1"
-confirm_changeset = true
+confirm_changeset = false
 capabilities = "CAPABILITY_IAM"
+force-upload = true
 
