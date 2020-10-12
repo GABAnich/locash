@@ -8,4 +8,5 @@ s3_prefix = "locash"
 region = "us-east-1"
 confirm_changeset = false
 capabilities = "CAPABILITY_IAM"
+force-upload = true
 
