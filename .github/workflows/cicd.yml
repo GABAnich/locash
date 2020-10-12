@@ -23,11 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create credentials.json
-        run: |
-          echo '{"TELEGRAM_TOKEN": "$TELEGRAM_TOKEN"}' > message-handler/credentials2.json
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
       - uses: TractorZoom/sam-cli-action@master
         with:
           sam_command: "build"
@@ -39,11 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create credentials.json
-        run: |
-          echo '{"TELEGRAM_TOKEN": "$TELEGRAM_TOKEN"}' > message-handler/credentials3.json
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
       - uses: TractorZoom/sam-cli-action@master
         with:
           sam_command: "deploy"
