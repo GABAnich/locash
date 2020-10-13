@@ -2,8 +2,7 @@ const { sendToUser } = require("./services/telegram");
 const handleStats = require("./stats");
 const handleTransaction = require("./transaction");
 const { welcomeText, pleaseTryAgain } = require("./text");
-
-const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
+const { TELEGRAM_TOKEN } = require("./credentials.json");
 
 const handleMessage = async ({ chat, text, date }) => {
     if (!text) {
