@@ -34,6 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: sed -e "s/\${TELEGRAM_TOKEN}/${{ secrets.TELEGRAM_TOKEN }}/" template.yaml
       - uses: TractorZoom/sam-cli-action@master
         with:
           sam_command: "deploy"

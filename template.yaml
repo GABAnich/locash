@@ -18,6 +18,9 @@ Resources:
             Handler: app.lambdaHandler
             Policies: AmazonDynamoDBFullAccess
             Runtime: nodejs12.x
+            Environment:
+              Variables:
+                TELEGRAM_TOKEN: "${TELEGRAM_TOKEN}"
             Events:
                 Message:
                     Type: Api
