@@ -23,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: npm ci
       - uses: TractorZoom/sam-cli-action@master
         with:
           sam_command: "build"
@@ -34,6 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: npm ci
       - uses: TractorZoom/sam-cli-action@master
         with:
           sam_command: "deploy --parameter-overrides TelegramToken=${{ secrets.TELEGRAM_TOKEN }}"
