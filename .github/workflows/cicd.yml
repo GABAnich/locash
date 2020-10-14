@@ -36,9 +36,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: TractorZoom/sam-cli-action@master
         with:
-          sam_command: "deploy --parameter-overrides TelegramToken=$TELEGRAM_TOKEN"
+          sam_command: "deploy --parameter-overrides TelegramToken=${{ secrets.TELEGRAM_TOKEN }}"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
