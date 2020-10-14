@@ -8,5 +8,4 @@ s3_prefix = "locash"
 region = "us-east-1"
 confirm_changeset = false
 capabilities = "CAPABILITY_IAM"
-no_fail_on_empty_changeset = true
 
