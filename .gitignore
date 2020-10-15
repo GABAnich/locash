@@ -75,6 +75,7 @@ typings/
 
 # dotenv environment variables file
 .env
+env.json
 credentials.json
 
 
