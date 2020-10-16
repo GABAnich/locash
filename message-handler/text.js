@@ -26,3 +26,9 @@ module.exports.commandNotFound = "Command not found";
 module.exports.noTransactions = "There no transactions in this time range.";
 
 module.exports.valueTooBig = "Value is too big";
+
+module.exports.incomeText = "Income";
+
+module.exports.spendingText = "Spending";
+
+module.exports.totalText = "Total";

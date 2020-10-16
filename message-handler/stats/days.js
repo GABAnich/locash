@@ -1,5 +1,10 @@
 const moment = require("moment");
-const { noTransactions } = require("../text");
+const {
+    noTransactions,
+    incomeText,
+    spendingText,
+    totalText,
+} = require("../text");
 const format = require("./format-stats");
 const footer = require("./footer");
 
@@ -27,8 +32,8 @@ module.exports = (stats) => {
     const { income, spending, total } = footer(stats);
     return (
         `${days}` +
-        `<b>Income</b>: ${income}\n` +
-        `<b>Spending</b>: ${spending}\n` +
-        `<b>Total</b>: ${total}\n`
+        `<b>${incomeText}</b>: ${income}\n` +
+        `<b>${spendingText}</b>: ${spending}\n` +
+        `<b>${totalText}</b>: ${total}\n`
     );
 };
