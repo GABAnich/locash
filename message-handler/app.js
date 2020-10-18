@@ -1,6 +1,7 @@
 const { sendToUser } = require("./services/telegram");
 const handleStats = require("./stats");
 const handleTransaction = require("./transaction");
+const handleLanguage = require("./language");
 const { welcomeText, pleaseTryAgain } = require("./text");
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM;
@@ -15,6 +16,8 @@ const handleMessage = async ({ chat, text, date }) => {
         return { statusCode: 200 };
     } else if (text.startsWith("/stats_")) {
         return handleStats({ chat, text });
+    } else if (text.startsWith("/lang_")) {
+        return handleLanguage({ chat, text });
     } else {
         return handleTransaction({ chat, text, date });
     }
