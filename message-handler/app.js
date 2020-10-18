@@ -2,24 +2,25 @@ const { sendToUser } = require("./services/telegram");
 const handleStats = require("./stats");
 const handleTransaction = require("./transaction");
 const handleLanguage = require("./language");
-const { welcomeText, pleaseTryAgain } = require("./text");
+const getText = require("./text");
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM;
 
 const handleMessage = async ({ chat, text, date }) => {
+    const labels = await getText(chat.id);
     if (!text) {
-        await sendToUser(chat.id, pleaseTryAgain);
+        await sendToUser(chat.id, labels.pleaseTryAgain);
         return { statusCode: 200 };
     }
     if (text === "/start" || text === "/help") {
-        await sendToUser(chat.id, welcomeText);
+        await sendToUser(chat.id, labels.welcomeText);
         return { statusCode: 200 };
     } else if (text.startsWith("/stats_")) {
-        return handleStats({ chat, text });
+        return handleStats({ chat, text, labels });
     } else if (text.startsWith("/lang_")) {
-        return handleLanguage({ chat, text });
+        return handleLanguage({ chat, text, labels });
     } else {
-        return handleTransaction({ chat, text, date });
+        return handleTransaction({ chat, text, date, labels });
     }
 };
 

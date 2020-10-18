@@ -1,10 +1,4 @@
 const moment = require("moment");
-const {
-    noTransactions,
-    incomeText,
-    spendingText,
-    totalText,
-} = require("../text");
 const footer = require("./footer");
 
 const splitStatsByMonths = (stats) => {
@@ -37,16 +31,16 @@ const getMonths = (stats) => {
     return months;
 };
 
-module.exports = (stats) => {
-    if (!stats.length) return noTransactions;
+module.exports = (stats, labels) => {
+    if (!stats.length) return labels.noTransactions;
 
     const months = getMonths(stats);
     const { income, spending, total } = footer(stats);
 
     return (
         `${months}` +
-        `<b>${incomeText}</b>: ${income}\n` +
-        `<b>${spendingText}</b>: ${spending}\n` +
-        `<b>${totalText}</b>: ${total}\n`
+        `<b>${labels.income}</b>: ${income}\n` +
+        `<b>${labels.spending}</b>: ${spending}\n` +
+        `<b>${labels.total}</b>: ${total}\n`
     );
 };

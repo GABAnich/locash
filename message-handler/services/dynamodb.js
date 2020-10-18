@@ -58,5 +58,8 @@ module.exports.setLanguage = ({ chat_id, language }) =>
         .put({ TableName: "UsersLanguage", Item: { chat_id, language } })
         .promise();
 
-module.exprots.getLangugae = (chat_id) =>
-    db.get({ TableName: "UsersLanguage", Key: { chat_id } }).promise();
+module.exports.getLanguage = (chat_id) =>
+    db
+        .get({ TableName: "UsersLanguage", Key: { chat_id } })
+        .promise()
+        .then(({ Item }) => Item);

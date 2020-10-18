@@ -1,16 +1,10 @@
-const {
-    noTransactions,
-    incomeText,
-    spendingText,
-    totalText,
-} = require("../text");
 const format = require("./format-stats");
 const footer = require("./footer");
 
-module.exports = (stats) => {
-    if (!stats.length) return noTransactions;
+module.exports = (stats, labels) => {
+    if (!stats.length) return labels.noTransactions;
     const { income, spending, total } = footer(stats);
-    return `${format(
-        stats
-    )}\n<b>${incomeText}</b>: ${income}\n<b>${spendingText}</b>: ${spending}\n<b>${totalText}</b>: ${total}\n`;
+    return `${format(stats)}\n<b>${labels.income}</b>: ${income}\n<b>${
+        labels.spending
+    }</b>: ${spending}\n<b>${labels.total}</b>: ${total}\n`;
 };

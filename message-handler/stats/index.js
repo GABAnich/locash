@@ -8,21 +8,21 @@ const statsAll = require("./stats-all");
 const { commandNotFound } = require("../text");
 const { sendToUser } = require("../services/telegram");
 
-module.exports = async ({ chat, text }) => {
+module.exports = async ({ chat, text, labels }) => {
     if (text === "/stats_day") {
-        return statsDay(chat);
+        return statsDay(chat, labels);
     } else if (text === "/stats_week") {
-        return statsWeek(chat);
+        return statsWeek(chat, labels);
     } else if (text === "/stats_month") {
-        return statsMonth(chat);
+        return statsMonth(chat, labels);
     } else if (text.startsWith("/stats_month")) {
-        return statsSpecificMonth({ chat, text });
+        return statsSpecificMonth({ chat, text, labels });
     } else if (text === "/stats_past_seven_day") {
-        return statsPastSevenDay(chat);
+        return statsPastSevenDay(chat, labels);
     } else if (text === "/stats_year") {
-        return statsYear(chat);
+        return statsYear(chat, labels);
     } else if (text === "/stats_all") {
-        return statsAll(chat);
+        return statsAll(chat, labels);
     } else {
         await sendToUser(chat.id, commandNotFound);
         return { statusCode: 200 };

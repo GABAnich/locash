@@ -3,13 +3,15 @@
 const { expect } = require("chai");
 const moment = require("moment");
 const format = require("../../../message-handler/stats/months");
+const text = require("../../../message-handler/text/text");
+const labels = require("../../../message-handler/text/get-text")(text, "en");
 
 describe("message-handler", () => {
     describe("stats", () => {
         describe("months", () => {
             it("should return line about there no stats", () => {
-                expect(format([])).to.be.a("string");
-                expect(format([])).to.equal(
+                expect(format([], labels)).to.be.a("string");
+                expect(format([], labels)).to.equal(
                     "There no transactions in this time range."
                 );
             });
@@ -68,7 +70,7 @@ describe("message-handler", () => {
                         date: moment().date(11).month(11).year(2020).unix(),
                     },
                 ];
-                expect(format(stats)).to.equal(
+                expect(format(stats, labels)).to.equal(
                     "January, 2020 (+9/-6/+3)\n" +
                         "/stats_month_January_2020\n" +
                         "\n" +
@@ -129,7 +131,7 @@ describe("message-handler", () => {
                         date: moment().date(2).month(2).year(2020).unix(),
                     },
                 ];
-                expect(format(stats)).to.equal(
+                expect(format(stats, labels)).to.equal(
                     "November, 2019 (0/-6/-6)\n" +
                         "/stats_month_November_2019\n" +
                         "\n" +
