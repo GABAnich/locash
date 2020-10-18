@@ -1,3 +1,5 @@
+const { flag_ua, flag_gb } = require("./emoji.json");
+
 module.exports = {
     welcomeText: {
         en: `
@@ -7,6 +9,9 @@ You can track your expenses and incomes here.
 <b>Usage</b>:
 <code>+15000 salary</code>
 <code>-20 coffee</code>
+
+/lang_en - use english language ${flag_gb}
+/lang_ua - use ukranian language ${flag_ua}
 
 /stats_day - your daily transactions.
 /stats_week - your weekly transactions.
@@ -25,6 +30,9 @@ Example: /stats_month_January_2020
 <b>Використання</b>:
 <code>+15000 зарплата</code>
 <code>-20 кава</code>
+
+/lang_en - використовувати англійську мову ${flag_gb}
+/lang_ua - використовувати українську мову :${flag_ua}
 
 /stats_day - транзакції за день.
 /stats_week - транзакції за тиждень.
