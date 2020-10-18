@@ -6,8 +6,8 @@ const getText = require("./text");
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM;
 
-const handleMessage = async ({ chat, text, date }) => {
-    const labels = await getText(chat.id);
+const handleMessage = async ({ chat, from, text, date }) => {
+    const labels = getText(from.language_code);
     if (!text) {
         await sendToUser(chat.id, labels.pleaseTryAgain);
         return { statusCode: 200 };
@@ -33,9 +33,9 @@ exports.lambdaHandler = async (event) => {
         }
 
         const body = JSON.parse(event.body);
-        const { chat, text, date } = body.message;
+        const { chat, from, text, date } = body.message;
 
-        return handleMessage({ chat, text, date });
+        return handleMessage({ chat, from, text, date });
     } catch (err) {
         console.log(err);
         return err;
