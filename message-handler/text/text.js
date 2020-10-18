@@ -1,5 +1,3 @@
-const { flag_ua, flag_gb } = require("./emoji.json");
-
 module.exports = {
     welcomeText: {
         en: `
@@ -9,9 +7,6 @@ You can track your expenses and incomes here.
 <b>Usage</b>:
 <code>+15000 salary</code>
 <code>-20 coffee</code>
-
-/lang_en - use english language ${flag_gb}
-/lang_ua - use ukranian language ${flag_ua}
 
 /stats_day - your daily transactions.
 /stats_week - your weekly transactions.
@@ -23,16 +18,13 @@ Example: /stats_month_January_2020
 /stats_all - your all transactions.
 /help - more information.
 `,
-        ua: `
+        uk: `
 <b>Привіт</b>,
 Ви можете тут вести облік ваших витрат та доходів.
 
 <b>Використання</b>:
 <code>+15000 зарплата</code>
 <code>-20 кава</code>
-
-/lang_en - використовувати англійську мову ${flag_gb}
-/lang_ua - використовувати українську мову :${flag_ua}
 
 /stats_day - транзакції за день.
 /stats_week - транзакції за тиждень.
@@ -47,25 +39,25 @@ Example: /stats_month_January_2020
     },
     pleaseTryAgain: {
         en: "Please try again...",
-        ua: "Будь ласка спробуйте пізніше...",
+        uk: "Будь ласка спробуйте пізніше...",
     },
     done: {
         en: "Done.\n/help - list of commands",
-        ua: "Готово.\n/help - список команд",
+        uk: "Готово.\n/help - список команд",
     },
     commandNotFound: {
         en: "Command not found",
-        ua: "Команду не знайдено",
+        uk: "Команду не знайдено",
     },
     noTransactions: {
         en: "There no transactions in this time range.",
-        ua: "Немає транзакції за цей період.",
+        uk: "Немає транзакції за цей період.",
     },
     valueTooBig: {
         en: "Value is too big",
-        ua: "Значення занадто велике",
+        uk: "Значення занадто велике",
     },
-    income: { en: "Income", ua: "Дохід" },
-    spending: { en: "Spending", ua: "Витрати" },
-    total: { en: "Total", ua: "Підсумок" },
+    income: { en: "Income", uk: "Дохід" },
+    spending: { en: "Spending", uk: "Витрати" },
+    total: { en: "Total", uk: "Підсумок" },
 };
