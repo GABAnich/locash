@@ -1,5 +1,5 @@
 {
-    "TableName": "Users",
+    "TableName": "UsersLanguage",
     "KeySchema": [
         {
             "AttributeName": "chat_id",

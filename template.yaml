@@ -49,7 +49,7 @@ Resources:
                 ReadCapacityUnits: "5"
                 WriteCapacityUnits: "5"
             TableName: "Transactions"
-    UsersDynamoDBTable:
+    UsersLanguageDynamoDBTable:
         Type: AWS::DynamoDB::Table
         Properties:
             AttributeDefinitions:
@@ -61,7 +61,7 @@ Resources:
             ProvisionedThroughput:
                 ReadCapacityUnits: "5"
                 WriteCapacityUnits: "5"
-            TableName: "Users"
+            TableName: "UsersLanguage"
 
 Outputs:
     # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
