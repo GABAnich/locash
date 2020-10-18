@@ -3,13 +3,15 @@
 const { expect } = require("chai");
 const moment = require("moment");
 const format = require("../../../message-handler/stats/days");
+const text = require("../../../message-handler/text/text");
+const labels = require("../../../message-handler/text/get-text")(text, "en");
 
 describe("message-handler", () => {
     describe("stats", () => {
         describe("days", () => {
             it("should return line about there no stats", () => {
-                expect(format([])).to.be.a("string");
-                expect(format([])).to.equal(
+                expect(format([], labels)).to.be.a("string");
+                expect(format([], labels)).to.equal(
                     "There no transactions in this time range."
                 );
             });
@@ -97,7 +99,7 @@ describe("message-handler", () => {
                     },
                 ];
 
-                expect(format(stats)).to.equal(
+                expect(format(stats, labels)).to.equal(
                     "1 February 2020\n" +
                         "<b>-6</b> <i>bus</i>\n" +
                         "\n" +

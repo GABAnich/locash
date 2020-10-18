@@ -52,3 +52,14 @@ module.exports.getAllTransactions = (chat_id) =>
         })
         .promise()
         .then(({ Items }) => Items);
+
+module.exports.setLanguage = ({ chat_id, language }) =>
+    db
+        .put({ TableName: "UsersLanguage", Item: { chat_id, language } })
+        .promise();
+
+module.exports.getLanguage = (chat_id) =>
+    db
+        .get({ TableName: "UsersLanguage", Key: { chat_id } })
+        .promise()
+        .then(({ Item }) => Item);

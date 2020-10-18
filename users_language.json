@@ -1,0 +1,19 @@
+{
+    "TableName": "UsersLanguage",
+    "KeySchema": [
+        {
+            "AttributeName": "chat_id",
+            "KeyType": "HASH"
+        }
+    ],
+    "AttributeDefinitions": [
+        {
+            "AttributeName": "chat_id",
+            "AttributeType": "N"
+        }
+    ],
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+    }
+}
