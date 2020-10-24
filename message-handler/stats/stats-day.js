@@ -14,7 +14,10 @@ module.exports = async (chat, labels) => {
     const { income, spending, total } = footer(stats);
     await sendPhoto({
         chat_id: chat.id,
-        photo: pieChartWithIncomeSpendingTotal({ income, spending, total }),
+        photo: pieChartWithIncomeSpendingTotal(
+            { income, spending, total },
+            labels
+        ),
         caption: formatDay(stats, labels),
     });
     return { statusCode: 200 };

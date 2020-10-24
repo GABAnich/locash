@@ -4,11 +4,11 @@ const getUrl = (data = {}) =>
     `${DOMAIN}/chart?bkg=white&c=${encodeURIComponent(JSON.stringify(data))}`;
 
 // eslint-disable-next-line max-lines-per-function
-const pieChartWithIncomeSpendingTotal = ({ income, spending, total }) =>
+const pieChartWithIncomeSpendingTotal = ({ income, spending, total }, labels) =>
     getUrl({
         type: "doughnut",
         data: {
-            labels: ["Income", "Spending"],
+            labels: [labels.income, labels.spending],
             datasets: [
                 {
                     data: [income, spending],
@@ -37,7 +37,7 @@ const pieChartWithIncomeSpendingTotal = ({ income, spending, total }) =>
                             },
                         },
                         {
-                            text: "total",
+                            text: labels.total,
                         },
                     ],
                 },
