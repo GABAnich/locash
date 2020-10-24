@@ -9,4 +9,12 @@ const sendToUser = async (chat_id, text) =>
         parse_mode: "HTML",
     });
 
-module.exports = { sendToUser };
+const sendPhoto = async ({ chat_id, photo, caption }) =>
+    axios.post(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendPhoto`, {
+        chat_id,
+        photo,
+        caption,
+        parse_mode: "HTML",
+    });
+
+module.exports = { sendToUser, sendPhoto };
