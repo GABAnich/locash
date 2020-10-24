@@ -1,7 +1,7 @@
 const DOMAIN = "https://quickchart.io";
 
 const getUrl = (data = {}) =>
-    `${DOMAIN}/chart?bkg=white&c=${JSON.stringify(data)}`;
+    `${DOMAIN}/chart?bkg=white&c=${encodeURIComponent(JSON.stringify(data))}`;
 
 // eslint-disable-next-line max-lines-per-function
 const pieChartWithIncomeSpendingTotal = ({ income, spending, total }) =>
@@ -44,5 +44,9 @@ const pieChartWithIncomeSpendingTotal = ({ income, spending, total }) =>
             },
         },
     });
+
+console.log(
+    pieChartWithIncomeSpendingTotal({ income: 11, spending: 2, total: 9 })
+);
 
 module.exports = { pieChartWithIncomeSpendingTotal };
