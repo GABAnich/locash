@@ -45,8 +45,4 @@ const pieChartWithIncomeSpendingTotal = ({ income, spending, total }) =>
         },
     });
 
-console.log(
-    pieChartWithIncomeSpendingTotal({ income: 11, spending: 2, total: 9 })
-);
-
 module.exports = { pieChartWithIncomeSpendingTotal };

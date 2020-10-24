@@ -12,7 +12,6 @@ module.exports = async (chat, labels) => {
         endDate: moment().endOf("day").unix(),
     });
     const { income, spending, total } = footer(stats);
-    console.log(pieChartWithIncomeSpendingTotal({ income, spending, total }));
     await sendPhoto({
         chat_id: chat.id,
         photo: pieChartWithIncomeSpendingTotal({ income, spending, total }),
