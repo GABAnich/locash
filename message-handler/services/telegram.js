@@ -7,6 +7,7 @@ const sendToUser = async (chat_id, text) =>
         chat_id,
         text,
         parse_mode: "HTML",
+        disable_notification: true,
     });
 
 const sendPhoto = async ({ chat_id, photo, caption }) =>
