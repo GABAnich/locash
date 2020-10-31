@@ -1,10 +1,7 @@
-const DOMAIN = "https://quickchart.io";
-
-const getUrl = (data = {}) =>
-    `${DOMAIN}/chart?bkg=white&c=${encodeURIComponent(JSON.stringify(data))}`;
+const { getUrl } = require("./utils");
 
 // eslint-disable-next-line max-lines-per-function
-const pieChartWithIncomeSpendingTotal = ({ income, spending, total }, labels) =>
+module.exports = ({ income, spending, total }, labels) =>
     getUrl({
         type: "doughnut",
         data: {
@@ -44,5 +41,3 @@ const pieChartWithIncomeSpendingTotal = ({ income, spending, total }, labels) =>
             },
         },
     });
-
-module.exports = { pieChartWithIncomeSpendingTotal };
