@@ -50,3 +50,9 @@ Or
 1. `sam build`
 2. `sam local invoke -e events/message2.json MessageHandlerFunction --env-vars env.json`
 
+Echo current date
+
+```bash
+echo $(date +%s)
+```
+
