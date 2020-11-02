@@ -1,7 +1,9 @@
 const moment = require("moment");
 const { getTransactions } = require("../services/dynamodb");
 const { sendPhoto } = require("../services/telegram");
-const { barCharDays } = require("../services/quickchart");
+const {
+    barCharDays: { getEncodedUrl },
+} = require("../services/quickchart");
 const formatDays = require("./days");
 
 module.exports = async (chat, labels) => {
@@ -14,7 +16,7 @@ module.exports = async (chat, labels) => {
     });
     await sendPhoto({
         chat_id: chat.id,
-        photo: barCharDays({ stats, labels, startDate, endDate }),
+        photo: getEncodedUrl({ stats, labels, startDate, endDate }),
         caption: formatDays(stats, labels),
     });
     return { statusCode: 200 };

@@ -1,43 +1,47 @@
 const moment = require("moment");
 const { getUrl } = require("./utils");
 
-// eslint-disable-next-line max-lines-per-function
-module.exports = ({ stats, labels, startDate, endDate }) => {
-    const dataMap = ({ value, date }) => ({
-        x: moment.unix(date).format("YYYY-MM-DD"),
-        y: value,
-    });
-    const incomeStats = stats.filter(({ value }) => value > 0).map(dataMap);
-    incomeStats.unshift({
-        x: moment.unix(startDate).subtract(1, "days").format("YYYY-MM-DD"),
-        y: 0,
-    });
-    incomeStats.push({
-        x: moment.unix(endDate).add(1, "days").format("YYYY-MM-DD"),
-        y: 0,
-    });
-    const spendingStats = stats.filter(({ value }) => value < 0).map(dataMap);
-    spendingStats.unshift({
-        x: moment.unix(startDate).subtract(1, "days").format("YYYY-MM-DD"),
-        y: 0,
-    });
-    spendingStats.push({
-        x: moment.unix(endDate).add(1, "days").format("YYYY-MM-DD"),
-        y: 0,
-    });
+const dayFormat = "YYYY-MM-DD";
 
-    return getUrl({
+const splitStatsByDay = (stats) => {
+    const res = {};
+    stats.forEach(({ date, value }) => {
+        const key = moment.unix(date).format(dayFormat);
+        if (!res[key]) {
+            res[key] = value;
+        } else {
+            res[key] += value;
+        }
+    });
+    return Object.keys(res).map((key) => ({ x: key, y: res[key] }));
+};
+
+// eslint-disable-next-line max-lines-per-function
+const getData = ({ stats, labels, startDate, endDate }) => {
+    const incomeStats = stats.filter(({ value }) => value > 0);
+    const spendingStats = stats.filter(({ value }) => value < 0);
+
+    const startObj = {
+        x: moment.unix(startDate).subtract(1, "days").format(dayFormat),
+        y: 0,
+    };
+    const endObj = {
+        x: moment.unix(endDate).add(1, "days").format(dayFormat),
+        y: 0,
+    };
+
+    return {
         type: "bar",
         data: {
             datasets: [
                 {
                     label: labels.income,
-                    data: incomeStats,
+                    data: [startObj, ...splitStatsByDay(incomeStats), endObj],
                     backgroundColor: "rgb(47, 168, 88)",
                 },
                 {
                     label: labels.spending,
-                    data: spendingStats,
+                    data: [startObj, ...splitStatsByDay(spendingStats), endObj],
                     backgroundColor: "rgb(213, 19, 58)",
                 },
             ],
@@ -58,5 +62,9 @@ module.exports = ({ stats, labels, startDate, endDate }) => {
                 ],
             },
         },
-    });
+    };
 };
+
+const getEncodedUrl = (args) => getUrl(getData(args));
+
+module.exports = { getData, getEncodedUrl };
