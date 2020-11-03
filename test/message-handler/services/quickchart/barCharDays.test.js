@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+/* eslint-disable max-lines */
 const { expect } = require("chai");
 const moment = require("moment");
 const {
@@ -44,19 +45,44 @@ describe("message-handler", () => {
                             {
                                 label: labels.income,
                                 data: [
-                                    { x: "2020-10-25", y: 0 },
-                                    { x: "2020-11-02", y: 22 },
-                                    { x: "2020-11-04", y: 0 },
+                                    {
+                                        x: moment()
+                                            .subtract(8, "days")
+                                            .format("YYYY-MM-DD"),
+                                        y: 0,
+                                    },
+                                    { x: moment().format("YYYY-MM-DD"), y: 22 },
+                                    {
+                                        x: moment()
+                                            .add(2, "days")
+                                            .format("YYYY-MM-DD"),
+                                        y: 0,
+                                    },
                                 ],
                                 backgroundColor: "rgb(47, 168, 88)",
                             },
                             {
                                 label: labels.spending,
                                 data: [
-                                    { x: "2020-10-25", y: 0 },
-                                    { x: "2020-11-02", y: -1 },
-                                    { x: "2020-11-01", y: -4 },
-                                    { x: "2020-11-04", y: 0 },
+                                    {
+                                        x: moment()
+                                            .subtract(8, "days")
+                                            .format("YYYY-MM-DD"),
+                                        y: 0,
+                                    },
+                                    { x: moment().format("YYYY-MM-DD"), y: -1 },
+                                    {
+                                        x: moment()
+                                            .subtract(1, "days")
+                                            .format("YYYY-MM-DD"),
+                                        y: -4,
+                                    },
+                                    {
+                                        x: moment()
+                                            .add(2, "days")
+                                            .format("YYYY-MM-DD"),
+                                        y: 0,
+                                    },
                                 ],
                                 backgroundColor: "rgb(213, 19, 58)",
                             },
