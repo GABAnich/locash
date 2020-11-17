@@ -25,12 +25,8 @@ describe("message-handler", () => {
                         value: -2,
                     },
                     {
-                        date: moment().add(1, "hour").unix(),
-                        value: 12,
-                    },
-                    {
                         date: moment().add(2, "hour").unix(),
-                        value: 10,
+                        value: 22,
                     },
                 ];
                 const startDate = moment().subtract(7, "days").unix();

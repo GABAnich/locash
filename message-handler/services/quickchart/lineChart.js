@@ -24,9 +24,6 @@ const getData = ({ stats }) => {
                 xAxes: [
                     {
                         type: "time",
-                        time: {
-                            unit: "year",
-                        },
                     },
                 ],
             },

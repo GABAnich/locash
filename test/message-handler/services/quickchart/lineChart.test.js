@@ -64,9 +64,6 @@ describe("message-handler", () => {
                             xAxes: [
                                 {
                                     type: "time",
-                                    time: {
-                                        unit: "year",
-                                    },
                                 },
                             ],
                         },
