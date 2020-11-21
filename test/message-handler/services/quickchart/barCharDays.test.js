@@ -48,9 +48,7 @@ describe("message-handler", () => {
                                         y: 0,
                                     },
                                     {
-                                        x: moment()
-                                            .add(1, "days")
-                                            .format("YYYY-MM-DD"),
+                                        x: moment().format("YYYY-MM-DD"),
                                         y: 22,
                                     },
                                     {
