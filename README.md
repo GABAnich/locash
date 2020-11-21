@@ -26,7 +26,7 @@ There a lot of apps that do the same. They might be paid, contains ads, they sto
 
 ### Architecture in future :smirk:
 
-![ArchitectureFuture](https://github.com/GABAnich/locash/blob/master/img/locash-aws-future.png)
+![ArchitectureFuture](https://github.com/GABAnich/locash/blob/master/img/locash-aws-future-new.png)
 
 
 ### Instalation
