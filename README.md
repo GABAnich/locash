@@ -21,7 +21,7 @@ There a lot of apps that do the same. They might be paid, contains ads, they sto
 
 ### How Locash works
 
-![Architecture](https://github.com/GABAnich/locash/blob/master/img/locash-aws.png)
+![Architecture](https://github.com/GABAnich/locash/blob/master/img/locash-aws-new.png)
 
 
 ### Architecture in future :smirk:
