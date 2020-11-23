@@ -56,3 +56,8 @@ Echo current date
 echo $(date +%s)
 ```
 
+Import transactions
+
+```bash
+aws dynamodb batch-write-item --request-items file://import-transactions.json --endpoint-url http://127.17.0.2:8000
+```
