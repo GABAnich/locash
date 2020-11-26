@@ -56,6 +56,12 @@ Echo current date
 echo $(date +%s)
 ```
 
+Generate transactions
+
+```bash
+node generate-transactions/index.js $(date +%s) [chat_id] [count] > data.json
+```
+
 Import transactions
 
 ```bash
