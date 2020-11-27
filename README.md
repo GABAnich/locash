@@ -41,6 +41,13 @@ There a lot of apps that do the same. They might be paid, contains ads, they sto
 
 ### Example
 
+Run project
+
+```bash
+./start.bash $(date +%s) [chat_id] [count]
+```
+
+
 1. `sam build`
 2. `sam local start-api --env-vars env.json`
 3. `curl -X POST -H "Content-Type: application/json" -d '{"message":{"chat": {"id": 31}, "text": "-20 coffee", "date": 1601022097 }}' http://127.0.0.1:3000/message/\?token\=<token>`
