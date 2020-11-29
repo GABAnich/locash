@@ -5,10 +5,10 @@ const { getEncodedUrl } = require("../services/quickchart/lineChart");
 const statsAccumulator = require("./stats-accumulator");
 
 module.exports = async (chat, labels) => {
-    const stats = statsAccumulator(await getAllTransactions(chat.id));
+    const stats = await getAllTransactions(chat.id);
     await sendPhoto({
         chat_id: chat.id,
-        photo: getEncodedUrl({ stats, labels }),
+        photo: getEncodedUrl({ stats: statsAccumulator(stats), labels }),
         caption: formatMonths(stats, labels),
     });
     return { statusCode: 200 };
