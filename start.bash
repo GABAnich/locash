@@ -12,6 +12,9 @@ node generate-transactions/index $1 $2 $3 > data.json
 echo "--- Insert data into Transactions ---"
 aws dynamodb batch-write-item --request-items file://data.json --endpoint-url http://127.17.0.2:8000     
 
+echo "--- Remove data.json"
+rm data.json
+
 echo "--- Sam build ---"
 sam build
 
