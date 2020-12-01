@@ -16,6 +16,7 @@ Example: /stats_month_January_2020
 /stats_past_seven_day - your transactions in last 7 days.
 /stats_year - your yearly transactions.
 /stats_all - your all transactions.
+/export_csv - export all transactions in CSV.
 /help - more information.
 `,
         uk: `
@@ -34,6 +35,7 @@ Example: /stats_month_January_2020
 /stats_past_seven_day - транзакції за остані 7 днів.
 /stats_year - транзакції за рік.
 /stats_all - всі транзакції.
+/export_csv - експорт транзакції в CSV.
 /help - більше інформації.
 `,
     },
