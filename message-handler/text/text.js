@@ -60,4 +60,5 @@ Example: /stats_month_January_2020
     income: { en: "Income", uk: "Дохід" },
     spending: { en: "Spending", uk: "Витрати" },
     total: { en: "Total", uk: "Підсумок" },
+    comingSoon: { en: "Coming soon", uk: "Cкоро буде" },
 };

@@ -3,6 +3,7 @@ const handleStats = require("./stats");
 const handleTransaction = require("./transaction");
 const handleLanguage = require("./language");
 const getText = require("./text");
+const exportCSV = require("./export_csv");
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM;
 
@@ -19,6 +20,8 @@ const handleMessage = async ({ chat, from, text, date }) => {
         return handleStats({ chat, text, labels });
     } else if (text.startsWith("/lang_")) {
         return handleLanguage({ chat, text, labels });
+    } else if (text === "/export_csv") {
+        return exportCSV({ chat, text, labels });
     } else {
         return handleTransaction({ chat, text, date, labels });
     }
