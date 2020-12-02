@@ -14,7 +14,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           version: 12
-      - run: for directory in ./*/ ; do (cd "$directory" && npm ci); done
+      - run: find . -maxdepth 1 -type d \( ! -name . \) -exec bash -c "cd '{}' && npm install" \;
       - run: npm run eslint
       - run: npm run test
         env:
@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           version: 12
-      - run: for directory in ./*/ ; do (cd "$directory" && npm ci); done
+      - run: find . -maxdepth 1 -type d \( ! -name . \) -exec bash -c "cd '{}' && npm install" \;
       - uses: TractorZoom/sam-cli-action@master
         with:
           sam_command: "build"
