@@ -6,49 +6,19 @@ on:
       - master
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 12
-        uses: actions/setup-node@v1
-        with:
-          version: 12
-      - run: find . -maxdepth 1 -type d \( ! -name . \) -exec bash -c "cd '{}' && npm install" \;
-      - run: npm run eslint
-      - run: npm run test
-        env:
-          CI: true
-  build:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          version: 12
-      - run: find . -maxdepth 1 -type d \( ! -name . \) -exec bash -c "cd '{}' && npm install" \;
-      - uses: TractorZoom/sam-cli-action@master
-        with:
-          sam_command: "build"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          version: 12
-      - run: find . -maxdepth 1 -type d \( ! -name . \) -exec bash -c "cd '{}' && npm install" \;
-      - uses: TractorZoom/sam-cli-action@master
-        with:
-          sam_command: "deploy --parameter-overrides TelegramToken=${{ secrets.TELEGRAM_TOKEN }}"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 12
+    - run: for d in */ ; do cd $d && npm install --no-package-lock --loglevel=error && cd .. ; done
+    - uses: r0zar/sam-deploy-action@v1.4
+      env:
+        TEMPLATE: 'template.yaml'
+        AWS_STACK_NAME: locash
+        AWS_REGION: 'us-east-1'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEPLOY_BUCKET: 'aws-sam-cli-managed-default-samclisourcebucket-1h8e2lfoc21uu'
