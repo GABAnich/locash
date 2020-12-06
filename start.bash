@@ -3,6 +3,9 @@
 echo "--- Run DynamoDB ---"
 docker run -d -p 8000:8000 amazon/dynamodb-local
 
+echo "--- Remove Transactions talbe ---"
+aws dynamodb delete-table --table-name 'Transactions' --endpoint-url http://127.17.0.2:8000
+
 echo "--- Create Transactions table ---"
 aws dynamodb create-table --cli-input-json file://transactions.json --endpoint-url http://127.17.0.2:8000
 
