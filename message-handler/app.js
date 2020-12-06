@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 const { sendToUser } = require("./services/telegram");
 const handleStats = require("./stats");
 const handleTransaction = require("./transaction");
@@ -8,6 +10,7 @@ const exportCSV = require("./export_csv");
 const TELEGRAM_TOKEN = process.env.TELEGRAM;
 
 const handleMessage = async ({ chat, from, text, date }) => {
+    moment.locale(from.language_code);
     const labels = getText(from.language_code);
     if (!text) {
         await sendToUser(chat.id, labels.pleaseTryAgain);
