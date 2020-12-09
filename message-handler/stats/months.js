@@ -22,6 +22,7 @@ const getMonths = (stats) => {
             .format("MMMM, YYYY");
         const { income, spending, total } = footer(statsByMonths[key]);
         months += `${date} (${income}/${spending}/${total})\n`;
+        moment.locale("en");
         const commandTime = moment
             .unix(statsByMonths[key][0].date)
             .format("MMMM_YYYY");
