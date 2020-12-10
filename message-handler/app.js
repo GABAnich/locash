@@ -3,7 +3,6 @@ const moment = require("moment");
 const { sendToUser } = require("./services/telegram");
 const handleStats = require("./stats");
 const handleTransaction = require("./transaction");
-const handleLanguage = require("./language");
 const getText = require("./text");
 const exportCSV = require("./export_csv");
 
@@ -21,8 +20,6 @@ const handleMessage = async ({ chat, from, text, date }) => {
         return { statusCode: 200 };
     } else if (text.startsWith("/stats_")) {
         return handleStats({ chat, text, labels });
-    } else if (text.startsWith("/lang_")) {
-        return handleLanguage({ chat, text, labels });
     } else if (text === "/export_csv") {
         return exportCSV({ chat, text, labels });
     } else {
