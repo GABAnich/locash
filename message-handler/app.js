@@ -36,7 +36,7 @@ exports.lambdaHandler = async (event) => {
         }
 
         const body = JSON.parse(event.body);
-        const { chat, from, text, date } = body.message;
+        const { chat, from, text, date } = (body.message || body.edited_message);
 
         return handleMessage({ chat, from, text, date });
     } catch (err) {
