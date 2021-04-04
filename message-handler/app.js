@@ -41,6 +41,6 @@ exports.lambdaHandler = async (event) => {
         return handleMessage({ chat, from, text, date });
     } catch (err) {
         console.log(err);
-        return err;
+        return { statusCode: 200 };
     }
 };
