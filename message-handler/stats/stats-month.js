@@ -1,6 +1,6 @@
 const moment = require("moment");
 const { getTransactions } = require("../services/dynamodb");
-const { sendPhoto } = require("../services/telegram");
+const { sendToUser, sendPhoto } = require("../services/telegram");
 const { pieChartWithIncomeSpendingTotal } = require("../services/quickchart");
 const formatDays = require("./days");
 const footer = require("./footer");
@@ -18,8 +18,8 @@ module.exports = async (chat, labels) => {
             { income, spending, total },
             labels
         ),
-        caption: formatDays(stats, labels),
     });
+    await sendToUser(chat.id, formatDays(stats, labels));
 
     return { statusCode: 200 };
 };

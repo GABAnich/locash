@@ -28,8 +28,8 @@ module.exports = async ({ chat, text, labels }) => {
             { income, spending, total },
             labels
         ),
-        caption: formatDays(stats, labels),
     });
+    await sendToUser(chat.id, formatDays(stats, labels));
 
     return { statusCode: 200 };
 };
