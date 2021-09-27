@@ -6,21 +6,7 @@ on:
       - master
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 12 
-        uses: actions/setup-node@v1
-        with:
-          version: 12 
-      - run: npm ci
-      - run: npm run eslint
-      - run: npm run test  
-        env:
-          CI: true
   deploy:
-    needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
