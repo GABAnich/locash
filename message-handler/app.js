@@ -28,6 +28,7 @@ const handleMessage = async ({ chat, from, text, date }) => {
 };
 
 exports.lambdaHandler = async (event) => {
+    return { statusCode: 200 };
     try {
         console.log(event);
 
