@@ -27,7 +27,7 @@ const handleMessage = async ({ chat, from, text, date }) => {
     }
 };
 
-exports.lambdaHandler = async (event) => {
+exports.handler = async (event) => {
     try {
         console.log(event);
 
