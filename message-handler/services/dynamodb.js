@@ -14,7 +14,7 @@ module.exports.createTransaction = ({
 }) =>
     db
         .put({
-            TableName: "Transactions",
+            TableName: "TransactionsUSD",
             Item: { chat_id, date, value, description, original },
         })
         .promise();
@@ -22,7 +22,7 @@ module.exports.createTransaction = ({
 module.exports.getTransactions = ({ chat_id, startDate, endDate }) =>
     db
         .query({
-            TableName: "Transactions",
+            TableName: "TransactionsUSD",
             KeyConditionExpression:
                 "#chat_id = :chat_id And #date BETWEEN :start_date AND :end_date",
             ExpressionAttributeValues: {
@@ -41,7 +41,7 @@ module.exports.getTransactions = ({ chat_id, startDate, endDate }) =>
 module.exports.getAllTransactions = (chat_id) =>
     db
         .query({
-            TableName: "Transactions",
+            TableName: "TransactionsUSD",
             KeyConditionExpression: "#chat_id = :chat_id",
             ExpressionAttributeValues: {
                 ":chat_id": chat_id,
