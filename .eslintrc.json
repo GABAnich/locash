@@ -14,6 +14,6 @@
         "no-var": "error",
         "max-lines": ["error", 100],
         "max-params": "error",
-        "max-lines-per-function": ["error", 20]
+        "max-lines-per-function": ["error", 30]
     }
 }

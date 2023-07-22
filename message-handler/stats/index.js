@@ -1,6 +1,7 @@
 const statsDay = require("./stats-day");
 const statsWeek = require("./stats-week");
 const statsMonth = require("./stats-month");
+const statsCategoriesMonth = require("./stats-categories-month");
 const statsSpecificMonth = require("./stats-specific-month");
 const statsPastSevenDay = require("./stats-past-seven-days");
 const statsYear = require("./stats-year");
@@ -13,6 +14,8 @@ module.exports = async ({ chat, text, labels }) => {
         return statsDay(chat, labels);
     } else if (text === "/stats_week") {
         return statsWeek(chat, labels);
+    } else if (text === "/stats_categories_month") {
+        return statsCategoriesMonth(chat, labels);
     } else if (text === "/stats_month") {
         return statsMonth(chat, labels);
     } else if (text.startsWith("/stats_month")) {
