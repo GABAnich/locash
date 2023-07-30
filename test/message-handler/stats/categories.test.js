@@ -26,11 +26,11 @@ describe("message-handler", () => {
                 ];
 
                 expect(categories(stats)).to.be.equal(
-                  'food: 61\n' +
-                  'food snacks: 10\n' +
-                  'rent: 300\n' +
                   'no_category: 700\n' +
-                  'health: 40\n'
+                  'rent: 300\n' +
+                  'food: 61\n' +
+                  'health: 40\n' +
+                  'food snacks: 10\n'
                 );
             });
         });
