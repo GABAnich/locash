@@ -2,7 +2,7 @@ module.exports = (stats) => {
     if (!stats.length) return 'no transactions';
 
     const expensesByCategories = stats
-      .sort((a, b) => b.value - a.value)
+      .sort((a, b) => a.value - b.value)
       .map((stat) => {
         if (!stat.description) {
           return { ...stat, description: 'no_category' };
