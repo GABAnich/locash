@@ -1,10 +1,6 @@
 const axios = require("axios");
 
-const baseLogger = require("../logger");
-const logger = {
-  info: (msg, args) => baseLogger.info(msg, { ...args, module: 'telegram' }),
-  error: (msg, args) => baseLogger.error(msg, { ...args, module: 'telegram' }),
-};
+const logger = require("../logger")({ module: "telegram" });
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM;
 

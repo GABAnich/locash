@@ -8,13 +8,10 @@ const statsYear = require("./stats-year");
 const statsAll = require("./stats-all");
 const { commandNotFound } = require("../text");
 const { sendToUser } = require("../services/telegram");
-const logger = require("../logger");
+const logger = require("../logger")("stats");
 
 module.exports = async ({ chat, text, labels }) => {
-    logger.info('params', {
-      module: 'stats',
-      params: { chat, text, labels },
-    });
+    logger.info('params', { params: { chat, text, labels } });
     
     if (text === "/stats_day") {
         return statsDay(chat, labels);

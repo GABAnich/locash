@@ -1,8 +1,13 @@
 const winston = require("winston");
 
-const logger = winston.createLogger({
-    format: winston.format.json(),
-    transports: [new winston.transports.Console({ handleExceptions: true })],
-});
+const loggerHOF = ({ module: moduleName }) => {
+    return winston.createLogger({
+        format: winston.format.json(),
+        transports: [
+            new winston.transports.Console({ handleExceptions: true }),
+        ],
+        defaultMeta: { module: moduleName },
+    });
+};
 
-module.exports = logger;
+module.exports = loggerHOF;

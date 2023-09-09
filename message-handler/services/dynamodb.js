@@ -1,26 +1,32 @@
 const AWS = require("aws-sdk");
 const config = require("../config");
+const logger = require("../logger")({ module: "dynamodb" });
 
 AWS.config.update(config);
 
 const db = new AWS.DynamoDB.DocumentClient();
 
-module.exports.createTransaction = ({
+const errorHandler = (...args) => (error) => {
+  logger.error('error', { error, args });
+  throw error;
+};
+
+module.exports.createTransaction = function ({
     chat_id,
     date,
     value,
     description,
     original,
-}) =>
-    db
+}) { return db
         .put({
             TableName: "Transactions",
             Item: { chat_id, date, value, description, original },
         })
-        .promise();
+        .promise()
+        .catch(errorHandler(arguments)) };
 
-module.exports.getTransactions = ({ chat_id, startDate, endDate }) =>
-    db
+module.exports.getTransactions = function ({ chat_id, startDate, endDate }) {
+    return db
         .query({
             TableName: "Transactions",
             KeyConditionExpression:
@@ -36,10 +42,11 @@ module.exports.getTransactions = ({ chat_id, startDate, endDate }) =>
             },
         })
         .promise()
-        .then(({ Items }) => Items);
+        .then(({ Items }) => Items)
+        .catch(errorHandler(arguments)) };
 
-module.exports.getAllTransactions = (chat_id) =>
-    db
+module.exports.getAllTransactions = function (chat_id) {
+    return db
         .query({
             TableName: "Transactions",
             KeyConditionExpression: "#chat_id = :chat_id",
@@ -51,4 +58,6 @@ module.exports.getAllTransactions = (chat_id) =>
             },
         })
         .promise()
-        .then(({ Items }) => Items);
+        .then(({ Items }) => Items)
+        .catch(errorHandler(arguments));
+}
