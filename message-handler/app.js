@@ -1,5 +1,6 @@
 const moment = require("moment");
 
+const logger = require("./logger");
 const { sendToUser } = require("./services/telegram");
 const handleStats = require("./stats");
 const handleTransaction = require("./transaction");
@@ -29,7 +30,7 @@ const handleMessage = async ({ chat, from, text, date }) => {
 
 exports.lambdaHandler = async (event) => {
     try {
-        console.log(event);
+        logger.info("received event", { module: "root", event });
 
         if (event.queryStringParameters.token !== TELEGRAM_TOKEN) {
             return { statusCode: 403 };
@@ -40,9 +41,12 @@ exports.lambdaHandler = async (event) => {
 
         return handleMessage({ chat, from, text, date });
     } catch (err) {
-        console.log(err);
+        logger.error("error", { module: "root", err });
         if (err.response) {
-            console.log(err.response.data);
+            logger.error("err.response.data", {
+                module: "root",
+                errorData: err.response.data,
+            });
         }
         return { statusCode: 200 };
     }

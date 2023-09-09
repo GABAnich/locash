@@ -1,22 +1,30 @@
 const axios = require("axios");
 
+const baseLogger = require("../logger");
+const logger = {
+  info: (msg, args) => baseLogger.info(msg, { ...args, module: 'telegram' }),
+  error: (msg, args) => baseLogger.error(msg, { ...args, module: 'telegram' }),
+};
+
 const TELEGRAM_TOKEN = process.env.TELEGRAM;
 
 const errorHandler = (error) => {
   if (error.response) {
-    console.log('response falls out of the range of 2xx');
-    console.log(error.response.data);
-    console.log(error.response.status);
-    console.log(error.response.headers);
+    logger.error('response falls out of the range of 2xx', {
+      data: error.response.data,
+      status: error.response.status,
+      headers: error.response.headers,
+    });
   } else if (error.request) {
-    console.log('The request was made but no response was received');
-    console.log(error.request);
+    logger.error('The request was made but no response was received', {
+      request: error.request,
+    });
   } else {
-    console.log('Error', error.message);
+    logger.error('error', { message: error.message });
   }
 
-  console.log(error.config);
-  console.log(error.toJSON());
+  logger.error('config', error.config);
+  logger.error('json', error.toJSON());
 };
 
 const sendToUser = async (chat_id, text) =>
