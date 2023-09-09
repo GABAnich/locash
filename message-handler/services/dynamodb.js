@@ -6,8 +6,8 @@ AWS.config.update(config);
 
 const db = new AWS.DynamoDB.DocumentClient();
 
-const errorHandler = (...args) => (error) => {
-  logger.error('error', { error, args });
+const errorHandler = (method, ...args) => (error) => {
+  logger.error('error', { error, method, args });
   throw error;
 };
 
@@ -23,7 +23,7 @@ module.exports.createTransaction = function ({
             Item: { chat_id, date, value, description, original },
         })
         .promise()
-        .catch(errorHandler(arguments)) };
+        .catch(errorHandler('createTransaction', arguments)) };
 
 module.exports.getTransactions = function ({ chat_id, startDate, endDate }) {
     return db
@@ -43,7 +43,7 @@ module.exports.getTransactions = function ({ chat_id, startDate, endDate }) {
         })
         .promise()
         .then(({ Items }) => Items)
-        .catch(errorHandler(arguments)) };
+        .catch(errorHandler('getTransactions', arguments)) };
 
 module.exports.getAllTransactions = function (chat_id) {
     return db
@@ -59,5 +59,5 @@ module.exports.getAllTransactions = function (chat_id) {
         })
         .promise()
         .then(({ Items }) => Items)
-        .catch(errorHandler(arguments));
+        .catch(errorHandler('getAllTransactions', arguments));
 }
